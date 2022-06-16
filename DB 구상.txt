@@ -1,0 +1,38 @@
+반(계정 소속 느낌)
+    담임쌤(User.Snowflake)
+    시간표(Image)
+
+유저
+    ID(Str)
+    PW(Str)
+    게시글갯수(Int)
+    선생님인지(Int: 0, 1)
+    학년(Int: 1, 2, 3)
+    반(Class.Snowflake)
+
+게시글
+    제목(Str)
+    글쓴이(User.Snowflake - ForeignKey)
+    내용(Str)
+    타임스탬프(Time)
+    
+    공지인지(Int: 0, 1)
+    댓글인지(Int: 0, 1)
+    질문인지(Int: 0, 1)
+    원글(Post.Snowflake)
+
+과목
+    이름(Str)
+    학년(Int: 1, 2, 3)
+    총 인원(Int)
+
+등급컷
+    Subject.Snowflake: ForeignKey
+    시험ID(Int)
+    1등급컷(Int)
+    ...
+    9등급컷
+
+User_Subject
+    User.Snowflake: ForeignKey
+    Subjects.Snowflake: ForeignKey
