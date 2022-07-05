@@ -3,12 +3,14 @@
     시간표(Image)
 
 유저
+    Snowflake(Int)
     ID(Str)
     PW(Str)
-    게시글갯수(Int)
-    선생님인지(Int: 0, 1)
-    학년(Int: 1, 2, 3)
-    반(Class.Snowflake)
+    권한(Int: 0 - 학생, 1 - 선생님, 2 - 개발자)
+    학년(Int: 1, 2, 3 - 학생 Only, 선생님: Null)
+    반(Int: 1~9 - 학생 Only, 선생님: Null)
+    담당과목(Str - 선생님 Only, 학생: Null)
+    교무실층(Int: 1~5 - 선생님 Only, 학생: Null)
 
 게시글
     제목(Str)
