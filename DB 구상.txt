@@ -1,40 +1,64 @@
-반(계정 소속 느낌)
-    담임쌤(User.Snowflake)
-    시간표(Image)
+# USER.db
 
-유저
+User: 로그인 정보
     Snowflake(Int)
     ID(Str)
     PW(Str)
-    권한(Int: 0 - 학생, 1 - 선생님, 2 - 개발자)
-    학년(Int: 1, 2, 3 - 학생 Only, 선생님: Null)
-    반(Int: 1~9 - 학생 Only, 선생님: Null)
-    담당과목(Str - 선생님 Only, 학생: Null)
-    교무실층(Int: 1~5 - 선생님 Only, 학생: Null)
 
-게시글
+Student: 학생 정보
+    User.Snowflake
+    번호(Int: 1~30)
+    이름(Str)
+
+Teacher: 선생님 정보
+    User.Snowflake
+    담당과목(Str: Predefined)
+    교무실(Str: Predefined)
+    이름(Str)
+
+Class: 반 정보
+    Snowflake(Int)
+    담임쌤(User.Snowflake)
+    시간표(Image: Blob)
+
+# POST.db
+
+Post: 게시글 정보
+    Snowflake(Int)
     제목(Str)
-    글쓴이(User.Snowflake - ForeignKey)
+    글쓴이(User.Snowflake)
     내용(Str)
     타임스탬프(Time)
-    
-    공지인지(Int: 0, 1)
-    댓글인지(Int: 0, 1)
-    질문인지(Int: 0, 1)
+    속성(Str: 공지, 질문, 답변)
+
     원글(Post.Snowflake)
 
-과목
+# SUBJECT.db
+
+Subject: 과목 정보
+    Snowflake(Int)
     이름(Str)
     학년(Int: 1, 2, 3)
     총 인원(Int)
 
-등급컷
-    Subject.Snowflake: ForeignKey
-    시험ID(Int)
+GradeHist: 역대 등급컷
+    Subject.Snowflake
+    연도(Int: yy꼴)
+    시험(1~4: 순서대로 1학기 중간~2학기 기말)
     1등급컷(Int)
     ...
     9등급컷
 
+# RELATION.db
+
 User_Subject
-    User.Snowflake: ForeignKey
-    Subjects.Snowflake: ForeignKey
+    User.Snowflake
+    Subjects.Snowflake
+
+User_Class
+    User.Snowflake
+    Class.Snowflake
+
+SubjectRating
+    Post.Snowflake
+    Subject.Snowflake
