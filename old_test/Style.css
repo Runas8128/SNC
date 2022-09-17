@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+h2 {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+h3 {
+    color: rgba(228, 113, 228, 0.866);
+}
+h5{
+    color:tomato
+}
+
+#head {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 50px;
+    position: relative;
+}
+
+.align_right {
+    float: right!important;
+}
+
+#border {
+    border-color: black;
+    border-width: 100%;
+    border-bottom: 1px;
+    border-style: solid;
+    position: relative;
+    top: 10px;
+}
+
+table {
+    border: 0;
+    margin-left: 35px;
+    border-spacing: 50px;
+}
+
+th {
+    width: 400px;
+    height: 500px;
+    border: 3px solid;
+}
+
+td {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+}
+
+#asdf {
+    align-self: right;
+}
