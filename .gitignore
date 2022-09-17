@@ -1,3 +1,2 @@
-# VENV Files
 venv
-.venv
+__pycache__
