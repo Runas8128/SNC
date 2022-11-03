@@ -6,8 +6,16 @@ from werkzeug.exceptions import abort
 from .auth import login_required
 from script.db import get_db
 
+''' Step 0. BluePrint(청사진; 도면) 설정
+ => 이 도면을 사용해서 만들면, (도메인)/blog/(설정한 url)으로 HTTP 요청을 받을 수 있음
+ ex> @bp.route('/post') => https://www.songnae.com/blog/post
+'''
 bp = Blueprint('blog', __name__)
 
+''' Step 1. HTTP 요청을 처리할 URL과 방식을 설정
+ => 방식은 아래 두번째 함수에 있듯, `methods=('GET', 'POST')` 이런 식으로 설정할 수 있음
+ 방식 생략시 기본값 = GET 요청
+'''
 @bp.route('/')
 def index():
     db = get_db()
