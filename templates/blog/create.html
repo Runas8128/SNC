@@ -8,8 +8,12 @@
   <form method="post">
     <label for="title">Title</label>
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
+    <label for="ID">ID</label>
+    <input name="ID" id="ID" value="{{ request.form['ID'] }}" required>
+    <label for="PW">PW</label>
+    <input name="PW" id="PW" value="{{ request.form['PW'] }}" required>
     <label for="body">Body</label>
-    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+    <textarea name="content" id="content">{{ request.form['content'] }}</textarea>
     <input type="submit" value="Save">
   </form>
 {% endblock %}
