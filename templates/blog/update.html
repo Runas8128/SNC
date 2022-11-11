@@ -11,10 +11,7 @@
       value="" required>
       <label for="content">Content</label>
       <textarea name="content" id="content">{{ request.form['content'] or post['content'] }}</textarea>
-    <input type="submit" value="Save">
-  </form>
-  <hr>
-  <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
-    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+    <input type="submit" name="action" value="Save">
+    <input class="danger" type="submit" name="action" value="Delete" onclick="return confirm('Are you sure?')">
   </form>
 {% endblock %}

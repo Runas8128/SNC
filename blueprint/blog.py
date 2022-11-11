@@ -65,43 +65,32 @@ def update(id):
     post = get_post(id)
 
     if request.method == 'POST':
-        print(request.form['value'])
         content = request.form['content']
         PW = request.form['PW']
 
-        error = None
-
         if post['PW'] != PW:
-            error = 'Wrong Password'
-        
-        if error is not None:
-            flash(error)
+            flash('Wrong Password')
+
         else:
-            db = get_db()
-            db.execute(
-                'UPDATE post SET content = ?'
-                ' WHERE id = ?',
-                (content, id)
-            )
-            db.commit()
+            if request.form['action'] == 'Save':
+                save(id, content)
+            elif request.form['action'] == 'Delete':
+                delete(id)
+
             return redirect(url_for('blog.index'))
 
     return render_template('blog/update.html', post=post)
 
-@bp.route('/<int:id>/delete', methods=('POST',))
-def delete(id):
-    post = get_post(id)
-    PW = request.form['PW']
+def save(id: int, content: str):
+    db = get_db()
+    db.execute(
+        'UPDATE post SET content = ?'
+        ' WHERE id = ?',
+        (content, id)
+    )
+    db.commit()
 
-    error = None
-
-    if post['PW'] != PW:
-        error = 'Wrong Password'
-
-    if error is not None:
-        flash(error)
-    else:
-        db = get_db()
-        db.execute('DELETE FROM post WHERE id = ?', (id,))
-        db.commit()
-    return redirect(url_for('blog.index'))
+def delete(id: int):
+    db = get_db()
+    db.execute('DELETE FROM post WHERE id = ?', (id,))
+    db.commit()
