@@ -12,9 +12,9 @@ bp = Blueprint('blog', __name__)
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT id, title, content, author, PW, created'
-        ' FROM post'
-        ' ORDER BY created DESC'
+        'SELECT id, title, content, author, PW, created '
+        'FROM post '
+        'ORDER BY created DESC'
     ).fetchall()
     return render_template('blog/index.html', posts=posts)
 
@@ -24,9 +24,7 @@ def create():
         title = request.form['title']
         content = request.form['content']
         ID = request.form['ID']
-        print(f'{ID = }')
         PW = request.form['PW']
-        print(f'{PW = }')
 
         error = None
 
@@ -38,8 +36,8 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO post (title, content, author, PW)'
-                ' VALUES (?, ?, ?, ?)',
+                'INSERT INTO post (title, content, author, PW) '
+                'VALUES (?, ?, ?, ?)',
                 (title, content, ID, PW)
             )
             db.commit()
@@ -47,11 +45,11 @@ def create():
 
     return render_template('blog/create.html')
 
-def get_post(id):
+def get_post(id: int):
     post = get_db().execute(
-        'SELECT id, title, content, author, PW, created'
-        ' FROM post'
-        ' WHERE id = ?',
+        'SELECT id, title, content, author, PW, created '
+        'FROM post '
+        'WHERE id = ?',
         (id,)
     ).fetchone()
 
@@ -61,7 +59,7 @@ def get_post(id):
     return post
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
-def update(id):
+def update(id: int):
     post = get_post(id)
 
     if request.method == 'POST':
@@ -84,13 +82,19 @@ def update(id):
 def save(id: int, content: str):
     db = get_db()
     db.execute(
-        'UPDATE post SET content = ?'
-        ' WHERE id = ?',
+        'UPDATE post '
+        'SET content = ? '
+        'WHERE id = ?',
         (content, id)
     )
     db.commit()
 
 def delete(id: int):
     db = get_db()
-    db.execute('DELETE FROM post WHERE id = ?', (id,))
+    db.execute(
+        'DELETE '
+        'FROM post '
+        'WHERE id = ?',
+        (id,)
+    )
     db.commit()
