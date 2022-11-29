@@ -7,6 +7,7 @@ from script.db import get_db
 
 bp = Blueprint('blog', __name__)
 
+
 @bp.route('/')
 def index():
     db = get_db()
@@ -16,6 +17,7 @@ def index():
         'ORDER BY created DESC'
     ).fetchall()
     return render_template('blog/index.html', posts=posts)
+
 
 @bp.route('/create', methods=('GET', 'POST'))
 def create():
@@ -44,6 +46,7 @@ def create():
 
     return render_template('blog/create.html')
 
+
 def get_post(id: int):
     post = get_db().execute(
         'SELECT id, title, content, author, PW, created '
@@ -56,6 +59,7 @@ def get_post(id: int):
         abort(404, f"Post id {id} doesn't exist.")
 
     return post
+
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 def update(id: int):
@@ -78,6 +82,7 @@ def update(id: int):
 
     return render_template('blog/update.html', post=post)
 
+
 def save(id: int, content: str):
     db = get_db()
     db.execute(
@@ -87,6 +92,7 @@ def save(id: int, content: str):
         (content, id)
     )
     db.commit()
+
 
 def delete(id: int):
     db = get_db()
