@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock %}</h1>
+  <h1>{% block title %}"{{ post['title'] }}" 수정중{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   <form method="post">
     <label for="PW">PW</label>
-    <input name="PW" id="PW" type="password"
-      value="" required>
-      <label for="content">Content</label>
-      <textarea name="content" id="content">{{ request.form['content'] or post['content'] }}</textarea>
+    <input name="PW" id="PW" type="password" value="" required>
+    <label for="content">Content</label>
+    <textarea name="content" id="content">{{ request.form['content'] or post['content'] }}</textarea>
     <input type="submit" name="action" value="Save">
     <input class="danger" type="submit" name="action" value="Delete" onclick="return confirm('Are you sure?')">
   </form>
