@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-  {# FIXME: This div is not showing #}
   {% for post in posts %}
     <article class="post">
       <header>
@@ -14,9 +13,6 @@
           <h1>{{ post['title'] }}</h1>
           <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
         </div>
-        {% if g.user['id'] == post['author_id'] %}
-          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
-        {% endif %}
       </header>
       <p class="body">{{ post['body'] }}</p>
     </article>
