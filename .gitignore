@@ -1,5 +1,10 @@
+# VENV Files
 venv
-__pycache__
-instance
+.venv
+
 .idea
+instance
+*.pdf
 *test*
+
+__pycache__
