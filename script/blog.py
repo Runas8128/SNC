@@ -45,7 +45,7 @@ def create():
     return render_template('blog/create.html')
 
 
-def get_post(post_id, check_author=True):
+def get_post(post_id):
     post = get_db().execute(
         'SELECT id, title, body, created, author_id'
         ' FROM post'
