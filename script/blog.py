@@ -12,7 +12,7 @@ bp = Blueprint('blog', __name__, url_prefix='/blog')
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT id, title, body, created, author_id'
+        'SELECT id, title, body, created, author'
         ' FROM post'
         ' ORDER BY created DESC'
     ).fetchall()
@@ -35,9 +35,9 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO post (title, body, author_id)'
-                ' VALUES (?, ?, ?)',
-                (title, body, user_id)
+                'INSERT INTO post (title, body, author, password)'
+                ' VALUES (?, ?, ?, ?)',
+                (title, body, user_id, user_pw)
             )
             db.commit()
             return redirect(url_for('blog.index'))
@@ -47,7 +47,7 @@ def create():
 
 def get_post(post_id):
     post = get_db().execute(
-        'SELECT id, title, body, created, author_id'
+        'SELECT id, title, body, created, author, password'
         ' FROM post'
         ' WHERE id = ?',
         (post_id,)
