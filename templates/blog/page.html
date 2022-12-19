@@ -9,7 +9,7 @@
     <header>
       <div>
         <h1>{{ post['title'] }}</h1>
-        <div class="about">by {{ post['author_id'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        <div class="about">by {{ post['author'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
       </div>
       <input type="button" value="Edit" onclick="checkPW('edit');">
       <input type="button" value="Delete" onclick="checkPW('delete');">
