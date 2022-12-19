@@ -1,12 +1,8 @@
 class handler {
-  inited = false;
   init() {
-    console.log('initing');
     this.canvas = this.build_canvas();
-    console.log('build canvas');
     this.context = this.canvas.getContext("2d");
     this.canvasImg = document.getElementById("canvasimg");
-    console.log('got other element from document');
 
     this.flag = false;
     this.isDot = false;
@@ -19,9 +15,6 @@ class handler {
       stroke: 'black',
       width: 2
     };
-
-    this.inited = true;
-    console.log('done');
   }
 
   build_canvas() {
