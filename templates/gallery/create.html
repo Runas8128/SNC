@@ -40,6 +40,7 @@
 
   <script type="text/javascript" src="{{ url_for('static', filename='canvasHandler.js') }}"></script>
   <script>
-    document.getElementById('canvasDiv').onload = () => canvas.init();
+    const body = document.querySelector('body');
+    body.onload = () => canvas.init();
   </script>
 {% endblock %}
