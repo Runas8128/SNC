@@ -28,11 +28,15 @@ def create_app(test_config=None):
     def root():
         return render_template('index.html')
 
+    app.add_url_rule('/', endpoint='index')
+
     from script import db
     db.init_app(app)
 
     from script import blog
     app.register_blueprint(blog.bp)
-    app.add_url_rule('/', endpoint='index')
+
+    from script import gallery
+    app.register_blueprint(gallery.bp)
 
     return app

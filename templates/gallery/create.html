@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Post{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="title">Title</label>
+    <input name="title" id="title" value="{{ request.form['title'] }}" required>
+    <label for="user_id">ID</label>
+    <input name="user_id" id="user_id" value="{{ request.form['user_id'] }}" required>
+    <label for="user_pw">PW</label>
+    <input name="user_pw" id="user_pw" value="{{ request.form['user_pw'] }}" required>
+
+    <label for="canvasDiv">Body</label>
+    <div id="canvasDiv" class="container">
+      <canvas id="canvas" width="200" height="200" style="border: 2px solid"></canvas>
+      <div class="palette">
+        <div id="noti1">Choose Color</div>
+        <div id="green"   onclick="canvas.setPen(this)"></div>
+        <div id="blue"    onclick="canvas.setPen(this)"></div>
+        <div id="red"     onclick="canvas.setPen(this)"></div>
+        <div id="yellow"  onclick="canvas.setPen(this)"></div>
+        <div id="orange"  onclick="canvas.setPen(this)"></div>
+        <div id="black"   onclick="canvas.setPen(this)"></div>
+        <div id="noti2">Eraser</div>
+        <div id="white"   onclick="canvas.setPen(this)"></div>
+      </div>
+    </div>
+
+    <img id="canvasimg" style="display: none;">
+
+    <div>
+      <input type="button" value="save" id="btn" size="30" onclick="canvas.save()">
+      <input type="button" value="clear" id="clr" size="23" onclick="canvas.erase()">
+{#      <input type="submit" value="Save">#}
+    </div>
+  </form>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='canvasHandler.js') }}"></script>
+  <script>
+    document.getElementById('canvasDiv').onload = () => canvas.init();
+  </script>
+{% endblock %}
