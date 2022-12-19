@@ -17,14 +17,13 @@
     btnOkay.addEventListener('click', () => {
       const input = document.getElementById('PW').value;
       const PW = '{{ post['password'] }}';
-      const target = '{{ target }}';
 
       if (PW !== input) {
         alert('비밀번호가 일치하지 않습니다.');
-        opener.location.href = '{{ url_for('blog.page', post_id=post['ID']) }}';
+        opener.location.href = '{{ url_for(fallback, post_id=post['ID']) }}';
       }
       else {
-        opener.location.href = '{{ url_for('blog.' + target, post_id=post['ID']) }}';
+        opener.location.href = '{{ url_for(callback, post_id=post['ID']) }}';
         self.close();
       }
     });

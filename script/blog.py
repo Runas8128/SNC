@@ -130,11 +130,21 @@ def page(post_id):
 def check_edit(post_id):
     post = get_post(post_id)
 
-    return render_template('blog/check_popup.html', post=post, target='update')
+    return render_template(
+        'popup/check.html',
+        post=post,
+        fallback='blog.page',
+        callback='blog.update'
+    )
 
 
 @bp.route('/<int:post_id>/check_delete', methods=('GET', 'POST'))
 def check_delete(post_id):
     post = get_post(post_id)
 
-    return render_template('blog/check_popup.html', post=post, target='delete')
+    return render_template(
+        'popup/check.html',
+        post=post,
+        fallback='blog.page',
+        callback='blog.delete'
+    )
