@@ -25,13 +25,16 @@ def create():
         title = request.form['title']
         body = request.form['body']
         user_id = request.form['user_id']
-        error = None
+        user_pw = request.form['user_pw']
 
         if not title:
-            error = 'Title is required.'
-
-        if error is not None:
-            flash(error)
+            flash('제목을 입력해주세요.')
+        elif not body:
+            flash('본문을 입력해주세요.')
+        elif not user_id:
+            flash('ID를 입력해주세요.')
+        elif not user_pw:
+            flash('비밀번호를 입력해주세요.')
         else:
             db = get_db()
             db.execute(
