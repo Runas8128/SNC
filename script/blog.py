@@ -101,3 +101,29 @@ def delete(post_id):
 def page(post_id):
     post = get_post(post_id)
     return render_template('blog/page.html', post=post)
+
+
+@bp.route('/<int:post_id>/check_edit', methods=('GET', ))
+def check_edit(post_id):
+    post = get_post(post_id)
+
+    return render_template(
+        'blog/check_popup.html',
+        post=post
+    )
+
+
+@bp.route('/<int:post_id>/check_delete', methods=('GET', 'POST'))
+def check_delete(post_id):
+    if request.method == 'POST':
+        post = get_post(post_id)
+        if post['PW'] != request.form['PW']:
+            flash("비밀번호가 일치하지 않습니다.")
+            return redirect(url_for('blog.page', post_id=post_id))
+
+        db = get_db()
+        db.execute('DELETE FROM post WHERE id = ?', (post_id,))
+        db.commit()
+        return redirect(url_for('blog.index'))
+
+    return render_template('blog/check_popup.html')

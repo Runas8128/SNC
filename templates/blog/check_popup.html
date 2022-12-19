@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Popup</title>
+</head>
+<body>
+  <p>비밀번호를 입력해주세요.</p>
+
+  <input type="text" name="PW" id="PW" required>
+  <button type="button" id="okay">확인</button>
+  <button onclick="self.close();">닫기</button>
+
+  <script>
+    const btnOkay = document.getElementById('okay');
+
+    btnOkay.addEventListener('click', () => {
+      const input = document.getElementById('PW').value;
+      const PW = '{{ post['password'] }}';
+
+      if (PW !== input) {
+        alert('비밀번호가 일치하지 않습니다.');
+        opener.location.href = '{{ url_for('blog.page', post_id=post['ID']) }}';
+      }
+      else {
+        opener.location.href = '{{ url_for('blog.update', post_id=post['ID']) }}';
+        self.close();
+      }
+    });
+  </script>
+</body>
+</html>
