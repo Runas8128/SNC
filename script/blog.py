@@ -3,7 +3,7 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from .db import get_db
+from .db import get_db, row2dict
 
 bp = Blueprint('blog', __name__, url_prefix='/blog')
 
@@ -100,7 +100,30 @@ def delete(post_id):
 @bp.route('/<int:post_id>/page', methods=('GET',))
 def page(post_id):
     post = get_post(post_id)
-    return render_template('blog/page.html', post=post)
+
+    nextPost = get_db().execute(
+        'SELECT id, title, body, created, author, password'
+        ' FROM post'
+        ' WHERE id > ?'
+        ' ORDER BY id'
+        ' LIMIT 1',
+        (post_id,)
+    ).fetchone()
+
+    prevPost = get_db().execute(
+        'SELECT id, title, body, created, author, password'
+        ' FROM post'
+        ' WHERE id < ?'
+        ' ORDER BY id DESC'
+        ' LIMIT 1',
+        (post_id,)
+    ).fetchone()
+
+    return render_template(
+        'blog/page.html',
+        post=post,
+        next=row2dict(nextPost), prev=row2dict(prevPost),
+    )
 
 
 @bp.route('/<int:post_id>/check_edit', methods=('GET', ))
@@ -108,6 +131,7 @@ def check_edit(post_id):
     post = get_post(post_id)
 
     return render_template('blog/check_popup.html', post=post, target='update')
+
 
 @bp.route('/<int:post_id>/check_delete', methods=('GET', 'POST'))
 def check_delete(post_id):
