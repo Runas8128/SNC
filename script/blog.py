@@ -37,13 +37,13 @@ def create():
             flash('비밀번호를 입력해주세요.')
         else:
             db = get_db()
-            db.execute(
+            cursor = db.execute(
                 'INSERT INTO post (title, body, author, password)'
                 ' VALUES (?, ?, ?, ?)',
                 (title, body, user_id, user_pw)
             )
             db.commit()
-            return redirect(url_for('blog.index'))
+            return redirect(url_for('blog.page', post_id=cursor.lastrowid))
 
     return render_template('blog/create.html')
 
@@ -82,7 +82,7 @@ def update(post_id):
                 (title, body, post_id)
             )
             db.commit()
-            return redirect(url_for('blog.index'))
+            return redirect(url_for('blog.page', post_id=post_id))
 
     post = get_post(post_id)
     return render_template('blog/update.html', post=post)
