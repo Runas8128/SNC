@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post">
+  <form>
     <label for="title">Title</label>
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
     <label for="user_id">ID</label>
@@ -29,18 +29,43 @@
       </div>
     </div>
 
-    <img id="canvasimg" style="display: none;">
-
     <div>
-      <input type="button" value="save" id="btn" size="30" onclick="canvas.save()">
+      <input type="button" value="save" id="submit">
       <input type="button" value="clear" id="clr" size="23" onclick="canvas.erase()">
-{#      <input type="submit" value="Save">#}
     </div>
   </form>
 
   <script type="text/javascript" src="{{ url_for('static', filename='canvasHandler.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
-    const body = document.querySelector('body');
-    body.onload = () => canvas.init();
+    document.querySelector('body')
+      .onload = () => canvas.init();
+
+    document.getElementById('submit')
+      .addEventListener('click', () => $.ajax({
+        type: "POST",
+        url: "/gallery/create",
+        data: JSON.stringify({
+          title: document.getElementById('title').value,
+          image: document.getElementById('canvas').toDataURL(),
+          user_id: document.getElementById('user_id').value,
+          user_pw: document.getElementById('user_pw').value,
+        }),
+        contentType: 'application/json',
+        dataType: 'json',
+        processData: false,
+        success: data => {
+          console.log(data);
+          if (['제목', 'ID', '비밀번호'].includes(data)) {
+            alert(`${data}을/를 채워주세요!`);
+          }
+          else {
+            location.href = `/gallery/${data}/page`;
+          }
+        },
+        error: data => {
+          alert('There was an error uploading your file!');
+        }
+      }));
   </script>
 {% endblock %}

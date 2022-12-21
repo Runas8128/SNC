@@ -2,7 +2,6 @@ class handler {
   init() {
     this.canvas = this.build_canvas();
     this.context = this.canvas.getContext("2d");
-    this.canvasImg = document.getElementById("canvasimg");
 
     this.flag = false;
     this.isDot = false;
@@ -51,14 +50,7 @@ class handler {
   erase() {
     if (confirm("Want to clear")) {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      this.canvasImg.style.display = "none";
     }
-  }
-
-  save() {
-    this.canvasImg.style.border = "2px solid";
-    this.canvasImg.src = this.canvas.toDataURL();
-    this.canvasImg.style.display = "inline";
   }
 
   setPos({ clientX, clientY }) {
@@ -66,7 +58,6 @@ class handler {
       prev: [...this.pos.curr],
       curr: [clientX - this.canvas.offsetLeft, clientY - this.canvas.offsetTop],
     };
-    console.log(this.pos);
   }
 
   findDown(e) {

@@ -11,12 +11,11 @@
         <h1>{{ post['title'] }}</h1>
         <div class="about">by {{ post['author'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
       </div>
-      <input type="button" value="Edit" onclick="checkPW('edit');">
       <input type="button" value="Delete" onclick="checkPW('delete');">
     </header>
 
     <article>
-      <p class="body">{{ post['body'] }}</p>
+      <img src="{{ post['body'] }}">
     </article>
 
     <hr>
@@ -46,4 +45,16 @@
       {% endif %}
     </div>
   </article>
+
+  <script>
+    function checkPW(action) {
+      const post_id = {{ post['id'] }};
+
+      window.open(
+        `/gallery/${post_id}/check_${action}`,
+        "a",
+        "width=400, height=300, left=100, top=50"
+      );
+    }
+  </script>
 {% endblock %}

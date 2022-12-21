@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, redirect, render_template, request, url_for
+    Blueprint, redirect, render_template, request, url_for, jsonify
 )
 from werkzeug.exceptions import abort
 
@@ -22,19 +22,19 @@ def index():
 @bp.route('/create', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
-        title = request.form['title']
-        body = request.form['body']
-        user_id = request.form['user_id']
-        user_pw = request.form['user_pw']
+        data = request.get_json()
+
+        title = data['title']
+        body = data['image']
+        user_id = data['user_id']
+        user_pw = data['user_pw']
 
         if not title:
-            flash('제목을 입력해주세요.')
-        elif not body:
-            flash('본문을 입력해주세요.')
+            rt = '제목'
         elif not user_id:
-            flash('ID를 입력해주세요.')
+            rt = 'ID'
         elif not user_pw:
-            flash('비밀번호를 입력해주세요.')
+            rt = '비밀번호'
         else:
             db = get_db()
             cursor = db.execute(
@@ -43,7 +43,9 @@ def create():
                 (title, body, user_id, user_pw)
             )
             db.commit()
-            return redirect(url_for('gallery.page', post_id=cursor.lastrowid))
+            rt = cursor.lastrowid
+
+        return jsonify(rt)
 
     return render_template('gallery/create.html')
 
@@ -66,7 +68,7 @@ def get_post(post_id):
 def delete(post_id):
     get_post(post_id)
     db = get_db()
-    db.execute('DELETE FROM post WHERE id = ?', (post_id,))
+    db.execute('DELETE FROM gallery WHERE id = ?', (post_id,))
     db.commit()
     return redirect(url_for('gallery.index'))
 
