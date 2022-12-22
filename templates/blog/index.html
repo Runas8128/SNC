@@ -34,17 +34,19 @@
         {% endfor %}
 
         <div class="board_page">
-          <a href="#" class="bt first"><<</a>
-          <a href="#" class="bt prev"><</a>
+          <a href="{{ url_for('blog.index', page_id=1) }}" class="bt first"><<</a>
+          <a href="{{ url_for('blog.index', page_id=[page_id - 1, 1]|max) }}" class="bt prev"><</a>
 
-          <a href="#1" class="num on">1</a>
-          <a href="#2" class="num">2</a>
-          <a href="#3" class="num">3</a>
-          <a href="#4" class="num">4</a>
-          <a href="#5" class="num">5</a>
+          {% for _id in range(page_count) %}
+            <a href="{{ url_for('blog.index', page_id=_id) }}" class="num">{{ _id + 1 }}</a>
+          {% endfor %}
 
-          <a href="#6" class="bt next">></a>
-          <a href="#7" class="bt last">>></a>
+          {% if page_count == 0 %}
+            <a href="{{ url_for('blog.index', page_id=1) }}" class="num">1</a>
+          {% endif %}
+
+          <a href="{{ url_for('blog.index', page_id=[page_count, page_id + 1]|min) }}" class="bt next">></a>
+          <a href="{{ url_for('blog.index', page_id=page_count) }}" class="bt last">>></a>
         </div>
       </div>
     </div>

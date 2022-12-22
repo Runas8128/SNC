@@ -3,6 +3,8 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
+from math import ceil
+
 from .db import get_db, row2dict
 
 bp = Blueprint('blog', __name__, url_prefix='/blog')
@@ -17,9 +19,14 @@ def index():
         ' ORDER BY id DESC'
     ).fetchall()
 
-    page_id = request.args.get('page', 1) - 1
+    page_id = int(request.args.get('page_id', '0'))
     starting_index = 25 * page_id
-    return render_template('blog/index.html', posts=posts[starting_index:starting_index+25])
+    return render_template(
+        'blog/index.html',
+        page_id=page_id,
+        page_count=ceil(len(posts) / 25),
+        posts=posts[starting_index:starting_index+25]
+    )
 
 
 @bp.route('/create', methods=('GET', 'POST'))
