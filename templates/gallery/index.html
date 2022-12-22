@@ -7,9 +7,12 @@
 
 {% block content %}
   {% for post in posts %}
-    <article class="post">
-      <a href="{{ url_for('gallery.page', post_id=post['id']) }}">{{ post['title'] }}</a>
-      <div class="about">by {{ post['author'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+    <article
+      class="post"
+      style="cursor: pointer; width: fit-content"
+      onclick="location.href='{{ url_for('gallery.page', post_id=post['id']) }}'">
+      <img src="{{ post['body'] }}" width="50%" />
+      <div class="about">{{ post['title'] }} by {{ post['author'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
     </article>
 
     {% if not loop.last %}
