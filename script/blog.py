@@ -14,9 +14,12 @@ def index():
     posts = db.execute(
         'SELECT id, title, body, created, author'
         ' FROM post'
-        ' ORDER BY created DESC'
+        ' ORDER BY id DESC'
     ).fetchall()
-    return render_template('blog/index.html', posts=posts)
+
+    page_id = request.args.get('page', 1) - 1
+    starting_index = 25 * page_id
+    return render_template('blog/index.html', posts=posts[starting_index:starting_index+25])
 
 
 @bp.route('/create', methods=('GET', 'POST'))

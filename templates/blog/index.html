@@ -6,15 +6,47 @@
 {% endblock %}
 
 {% block content %}
-  {% for post in posts %}
-    <article class="post">
-      <a href="{{ url_for('blog.page', post_id=post['id']) }}">{{ post['title'] }}</a>
-      <div class="about">by {{ post['author'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-    </article>
+  <div class="board_wrap">
+    <div class="board_list_wrap">
+      <div class="board_list">
+        <div class="top">
+          <span class="num">번호</span>
+          <span class="title">제목</span>
+          <span class="writer">글쓴이</span>
+          <span class="date">작성일</span>
+          <span class="count">조회</span>
+        </div>
 
-    {% if not loop.last %}
-      <hr>
-    {% endif %}
+        {% for post in posts %}
+          <a
+            class="post"
+            href = {{ url_for('blog.page', post_id=post['id']) }}>
+            <span class="num"> {{ post['id'] }} </span>
+            <span class="title"> {{ post['title'] }} </span>
+            <span class="writer"> {{ post['author'] }} </span>
+            <span class="date"> {{ post['created'].strftime('%Y-%m-%d') }} </span>
+            <span class="count"> 0 </span>
+          </a>
 
-  {% endfor %}
+          {% if not loop.last %}
+            <hr>
+          {% endif %}
+        {% endfor %}
+
+        <div class="board_page">
+          <a href="#" class="bt first"><<</a>
+          <a href="#" class="bt prev"><</a>
+
+          <a href="#1" class="num on">1</a>
+          <a href="#2" class="num">2</a>
+          <a href="#3" class="num">3</a>
+          <a href="#4" class="num">4</a>
+          <a href="#5" class="num">5</a>
+
+          <a href="#6" class="bt next">></a>
+          <a href="#7" class="bt last">>></a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
