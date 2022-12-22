@@ -4,7 +4,6 @@ class handler {
     this.context = this.canvas.getContext("2d");
 
     this.flag = false;
-    this.isDot = false;
 
     this.pos = {
       prev: [0, 0],
@@ -48,9 +47,8 @@ class handler {
   }
 
   erase() {
-    if (confirm("Want to clear")) {
-      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    }
+    if (!confirm("Want to clear")) return;
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   setPos({ clientX, clientY }) {
@@ -64,16 +62,11 @@ class handler {
     this.setPos(e);
 
     this.flag = true;
-    this.isDot = true;
 
-    if (this.isDot) {
-      this.context.beginPath();
-      this.context.fillStyle = this.pen.stroke;
-      this.context.fillRect(...this.pos.curr, 2, 2);
-      this.context.closePath();
-
-      this.isDot = false;
-    }
+    this.context.beginPath();
+    this.context.fillStyle = this.pen.stroke;
+    this.context.fillRect(...this.pos.curr, 2, 2);
+    this.context.closePath();
   }
 
   findUpOrOut() {
@@ -81,10 +74,9 @@ class handler {
   }
 
   findMove(e) {
-    if (this.flag) {
-      this.setPos(e);
-      this.draw();
-    }
+    if (!this.flag) return;
+    this.setPos(e);
+    this.draw();
   }
 }
 
