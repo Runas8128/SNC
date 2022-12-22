@@ -12,21 +12,20 @@
   <button onclick="self.close();">닫기</button>
 
   <script>
-    const btnOkay = document.getElementById('okay');
+    document.getElementById('okay')
+      .addEventListener('click', () => {
+        const input = document.getElementById('PW').value;
+        const PW = '{{ post['password'] }}';
 
-    btnOkay.addEventListener('click', () => {
-      const input = document.getElementById('PW').value;
-      const PW = '{{ post['password'] }}';
-
-      if (PW !== input) {
-        alert('비밀번호가 일치하지 않습니다.');
-        opener.location.href = '{{ url_for(fallback, post_id=post['ID']) }}';
-      }
-      else {
-        opener.location.href = '{{ url_for(callback, post_id=post['ID']) }}';
-        self.close();
-      }
-    });
+        if (PW !== input) {
+          alert('비밀번호가 일치하지 않습니다.');
+          opener.location.href = '{{ url_for(fallback, post_id=post['ID']) }}';
+        }
+        else {
+          opener.location.href = '{{ url_for(callback, post_id=post['ID']) }}';
+          self.close();
+        }
+      });
   </script>
 </body>
 </html>
