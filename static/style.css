@@ -230,19 +230,20 @@ input[type=submit] {
   grid-template-areas:
     'nav_post nav_gall'
     'nav_const1 nav_const2';
-  gap: 10px;
+  grid-template-columns: 50% 50%;
   width: 100%;
   height: 22vw;
   background: #377ba8;
   align-items: center;
 }
 
-.mainDivBox > div {
+.mainDivBox > p {
   background-color: white;
   text-align: center;
+
   padding: 20px 0;
   margin: auto;
-  width: 96%;
+  width: 90%;
   height: 50%;
   font-size: large;
 }
@@ -262,6 +263,7 @@ a {
     't1 t2 t3'
     't4 t5 t6'
     't7 t7 t7';
+  grid-template-columns: 33% 33% 33%;
   width: 100%;
   align-content: center;
 }
@@ -270,7 +272,6 @@ a {
   text-align: center;
   padding: 20px 0;
   margin: auto;
-  width: 50%;
   font-size: medium;
 }
 
