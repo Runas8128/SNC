@@ -5,5 +5,21 @@
 {% endblock %}
 
 {% block content %}
-  <p>🚧 공사중입니다 🚧</p>
+  <div class="mainDivBox">
+    <div id="nav_post" style="cursor: pointer">게시물 쓰기</div>
+    <div id="nav_gall"  style="cursor: pointer">방명록 그리기</div>
+    <div id="nav_const1">🚧 공사중입니다 🚧</div>
+    <div id="nav_const2">🚧 공사중입니다 🚧</div>
+  </div>
+
+  <script>
+    document.getElementById('nav_post')
+      .addEventListener('click', () => {
+        location.href = {{ url_for('blog.index') }};
+      });
+    document.getElementById('nav_gall')
+      .addEventListener('click', () => {
+        location.href = {{ url_for('gallery.index') }};
+      });
+  </script>
 {% endblock %}
