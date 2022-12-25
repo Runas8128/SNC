@@ -77,7 +77,7 @@ function setPageHeader(post) {
   topDiv.insertBefore(header, topDiv.firstChild);
 }
 
-function setPageFooter(next, prev) {
+function setPageFooter(next, prev, summarizer) {
   const topDiv = document.getElementsByClassName('post_page')[0];
 
   const hr = document.createElement('hr');
@@ -85,16 +85,16 @@ function setPageFooter(next, prev) {
 
   const table = document.createElement('table');
   table.setAttribute('id', 'move_page');
-  table.appendChild(makeTR(next, 'move_next', '▲'));
-  table.appendChild(makeTR(prev, 'move_prev', '▼'));
+  table.appendChild(makeTR(next, 'move_next', '▲', summarizer));
+  table.appendChild(makeTR(prev, 'move_prev', '▼', summarizer));
   topDiv.appendChild(table);
 }
 
-function makeTR(post, id, arrow) {
+function makeTR(post, id, arrow, summarizer) {
   const row = document.createElement('tr');
   row.setAttribute('id', id);
 
-  const summary = getSummary(post);
+  const summary = summarizer(post);
   if (summary) {
     row.appendChild(generateSpan(arrow, 'arrow'));
     row.appendChild(summary);

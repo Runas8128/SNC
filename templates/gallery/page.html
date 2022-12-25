@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1 onclick="history.go(-1)" style="cursor: pointer;">{% block title %}Gallery{% endblock %}</h1>
+  <h1 onclick="location.href = {{ url_for('gallery.index') }}" style="cursor: pointer;">
+    {% block title %}Gallery{% endblock %}
+  </h1>
   <div class="editButtons">
     <input type="button" value="Delete" onclick="checkPW('delete');">
   </div>
@@ -31,7 +33,7 @@
   <script src="{{ url_for('static', filename='js/util.js') }}"></script>
   <script>
     setPageHeader({{ post|safe }});
-    setPageFooter({{ next|safe }}, {{ prev|safe }});
+    setPageFooter({{ next|safe }}, {{ prev|safe }}, getThumbnail);
   </script>
 
   <script>
