@@ -1,31 +1,42 @@
-function generateSpan(clazz, text) {
-  const span = document.createElement('span');
-  span.classList.add(clazz);
+function generateSpan(text, clazz) {
+  const span = document.createElement('td');
   span.innerHTML = text;
+
+  span.classList.add(clazz);
   return span
 }
 
-function generateBlock(obj) {
-  return [
-    generateSpan('id', obj.a)
-  ];
+function generateTD(text, clazz, href) {
+  const td = document.createElement('td');
+
+  if (href) {
+    const a = document.createElement('a');
+    a.href = href;
+    a.innerHTML = text;
+    td.appendChild(a);
+  }
+  else {
+    td.innerHTML = text;
+  }
+
+  td.classList.add(clazz);
+  return td
 }
 
 function getSummary(post) {
   if (Object.keys(post).length === 0) return;
 
-  const a = document.createElement('a');
+  const rowElement = document.createElement('tr');
 
-  a.classList.add('post');
-  a.href = `/blog/${post.id}/page`;
+  rowElement.classList.add('post');
 
-  a.appendChild(generateSpan('num', post.id));
-  a.appendChild(generateSpan('title', post.title));
-  a.appendChild(generateSpan('writer', post.author));
-  a.appendChild(generateSpan('date', post.created));
-  a.appendChild(generateSpan('count', post.view));
+  rowElement.appendChild(generateTD(post.id, 'num'));
+  rowElement.appendChild(generateTD(post.title, 'title', `/blog/${post.id}/page`));
+  rowElement.appendChild(generateTD(post.author, 'writer'));
+  rowElement.appendChild(generateTD(post.created, 'date'));
+  rowElement.appendChild(generateTD(post.view, 'count'));
 
-  return a;
+  return rowElement;
 }
 
 function getThumbnail(post) {

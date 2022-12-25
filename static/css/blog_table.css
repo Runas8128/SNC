@@ -1,0 +1,34 @@
+table {
+  width: 100%;
+}
+
+th {
+  font-size: medium;
+  background-color: #eee;
+}
+
+td {
+  text-align: center;
+  height: 50px;
+  font-size: medium;
+}
+
+td.num {
+  width: 10%;
+}
+
+td.title {
+  width: 45%;
+}
+
+td.writer {
+  width: 20%;
+}
+
+td.date {
+  width: 15%;
+}
+
+td.count {
+  width: 10%;
+}

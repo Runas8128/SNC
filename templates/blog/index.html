@@ -3,12 +3,22 @@
 {% block header %}
   <h1>{% block title %}Posts{% endblock %}</h1>
   <a class="action" href="{{ url_for('blog.create') }}">New</a>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blog_table.css') }}">
 {% endblock %}
 
 {% block content %}
   <div class="board_wrap">
     <div class="board_list_wrap">
-      <div class="board_list"></div>
+      <table class="board_list">
+        <tr class="top">
+          <th class="num">번호</th>
+          <th class="title">제목</th>
+          <th class="writer">글쓴이</th>
+          <th class="date">작성일</th>
+          <th class="count">조회수</th>
+        </tr>
+      </table>
       <div class="board_page">
           <a href="{{ url_for('blog.index', page_id=0) }}" class="bt first"><<</a>
           <a href="{{ url_for('blog.index', page_id=[page_id - 1, 0]|max) }}" class="bt prev"><</a>
@@ -32,12 +42,6 @@
     const posts = {{ posts|safe }};
     const listElem = document.getElementsByClassName('board_list')[0];
 
-    posts.forEach((post, index) => {
-      listElem.append(getSummary(post));
-
-      if (index !== posts.length - 1) {
-        listElem.appendChild(document.createElement('hr'));
-      }
-    });
+    posts.forEach(post => listElem.append(getSummary(post)));
   </script>
 {% endblock %}

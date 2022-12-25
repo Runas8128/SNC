@@ -2,6 +2,16 @@
 
 {% block header %}
   <h1>{% block title %}Posts{% endblock %}</h1>
+  <style>
+    table { width: 100%; }
+    td { text-align: center; }
+
+    td.num { width: 10%; }
+    td.title { width: 45%; }
+    td.writer { width: 20%; }
+    td.date { width: 15%; }
+    td.count { width: 10%; }
+  </style>
 {% endblock %}
 
 {% block content %}
@@ -21,26 +31,26 @@
 
     <hr>
 
-    <div id="move_page">
-      <div id="move_next"></div>
-      <div id="move_prev"></div>
-    </div>
+    <table id="move_page">
+      <tr id="move_next"></tr>
+      <tr id="move_prev"></tr>
+    </table>
   </article>
 
   <script src="{{ url_for('static', filename='js/util.js') }}"></script>
   <script>
-    const nextThumbnail = getSummary({{ next|safe }});
-    if (nextThumbnail) {
+    const nextSummary = getSummary({{ next|safe }});
+    if (nextSummary) {
       const nextDiv = document.getElementById('move_next');
-      nextDiv.appendChild(generateSpan('arrow', '▲'));
-      nextDiv.appendChild(nextThumbnail);
+      nextDiv.appendChild(generateSpan('▲', 'arrow'));
+      nextDiv.appendChild(nextSummary);
     }
 
-    const prevThumbnail = getSummary({{ prev|safe }});
-    if (prevThumbnail) {
+    const prevSummary = getSummary({{ prev|safe }});
+    if (prevSummary) {
       const prevDiv = document.getElementById('move_prev');
-      prevDiv.appendChild(generateSpan('arrow', '▼'));
-      prevDiv.appendChild(prevThumbnail);
+      prevDiv.appendChild(generateSpan('▼', 'arrow'));
+      prevDiv.appendChild(prevSummary);
     }
   </script>
 
