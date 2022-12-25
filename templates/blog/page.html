@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Posts{% endblock %}</h1>
+  <h1 onclick="history.go(-1)" style="cursor: pointer;">{% block title %}Posts{% endblock %}</h1>
   <style>
     table { width: 100%; }
     td { text-align: center; }

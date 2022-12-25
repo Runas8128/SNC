@@ -2,6 +2,8 @@
 
 {% block header %}
   <h1>{% block title %}New Picture{% endblock %}</h1>
+  <a class="action" onclick="history.go(-1);" style="cursor: pointer; font-size: x-large">🔙</a>
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/canvas.css') }}">
 {% endblock %}

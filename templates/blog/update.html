@@ -3,6 +3,7 @@
 {% block header %}
   <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock %}</h1>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+  <a class="action" onclick="history.go(-1);" style="cursor: pointer; font-size: x-large">🔙</a>
 
   <style>
     .content textarea {
