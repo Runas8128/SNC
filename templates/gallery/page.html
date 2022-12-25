@@ -2,6 +2,9 @@
 
 {% block header %}
   <h1 onclick="history.go(-1)" style="cursor: pointer;">{% block title %}Gallery{% endblock %}</h1>
+  <div class="editButtons">
+    <input type="button" value="Delete" onclick="checkPW('delete');">
+  </div>
 
   <style>
     table { width: 100%; }
@@ -23,7 +26,6 @@
         <h1>{{ post['title'] }}</h1>
         <div class="about">by {{ post['author'] }} on {{ post['created'] }}</div>
       </div>
-      <input type="button" value="Delete" onclick="checkPW('delete');">
     </header>
 
     <article>
