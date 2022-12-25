@@ -19,6 +19,9 @@
           <th class="count">조회수</th>
         </tr>
       </table>
+
+      <hr>
+
       <div class="board_page">
           <a href="{{ url_for('blog.index', page_id=0) }}" class="bt first"><<</a>
           <a href="{{ url_for('blog.index', page_id=[page_id - 1, 0]|max) }}" class="bt prev"><</a>

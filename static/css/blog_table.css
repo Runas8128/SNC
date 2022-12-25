@@ -32,3 +32,11 @@ td.date {
 td.count {
   width: 10%;
 }
+
+.board_page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 30%;
+  margin-right: 30%;
+}
