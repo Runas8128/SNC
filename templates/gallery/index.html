@@ -20,5 +20,13 @@
         listElem.appendChild(document.createElement('hr'));
       }
     });
+
+    window.onpageshow = event => {
+      if (
+        event.persisted ||
+        (performance.navigation.type === 2)) {
+        location.reload();
+      }
+    }
   </script>
 {% endblock %}
