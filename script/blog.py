@@ -105,15 +105,23 @@ def delete(post_id):
 
 @bp.route('/<int:post_id>/page', methods=('GET',))
 def page(post_id):
+    db = get_db()
+    db.execute(
+        'UPDATE post SET view=view+1'
+        ' WHERE id=?',
+        (post_id,)
+    )
+    db.commit()
+
     post = get_post(post_id)
 
-    nextPost = get_db().execute(
+    nextPost = db.execute(
         'SELECT * FROM post'
         ' WHERE id > ? ORDER BY id LIMIT 1',
         (post_id,)
     ).fetchone() or {}
 
-    prevPost = get_db().execute(
+    prevPost = db.execute(
         'SELECT * FROM post'
         ' WHERE id < ? ORDER BY id DESC LIMIT 1',
         (post_id,)
