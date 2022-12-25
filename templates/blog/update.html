@@ -2,6 +2,14 @@
 
 {% block header %}
   <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock %}</h1>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+
+  <style>
+    .content textarea {
+      min-height: 12em;
+      resize: vertical;
+    }
+  </style>
 {% endblock %}
 
 {% block content %}

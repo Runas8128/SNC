@@ -1,3 +1,5 @@
+/* generic tags */
+
 html {
   font-family: sans-serif;
   background: #eee;
@@ -21,184 +23,46 @@ hr {
   border-top: 1px solid lightgray;
 }
 
-header .action {
-  display: block;
-  padding: 0.5rem;
-}
-
-.content:last-child {
-  margin-bottom: 0;
-}
-
-/* all - create, update */
-.content form {
-  margin: 1em 0;
-  display: flex;
-  flex-direction: column;
-}
-
-/* all - create, update */
-.content label {
-  font-weight: bold;
-  margin-bottom: 0.5em;
-}
-
-/* all */
-.content input, .content textarea {
-  margin-bottom: 1em;
-}
-
-/* blog - create/update */
-.content textarea {
-  min-height: 12em;
-  resize: vertical;
-}
-
-/* all - create/update */
-input[type=submit] {
-  align-self: start;
-  min-width: 10em;
-}
-
-/****************** gallery - create *********************/
-
-.container {
-  max-width: 960px;
-  align-self: center;
-  margin: auto;
-}
-
-#canvas {
-  float: left;
-  margin: auto;
-}
-
-#noti1 {
-  grid-area: noti1;
-  font-size: small;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-#noti2 {
-  grid-area: noti2;
-  font-size: small;
-}
-
-#green {
-  grid-area: green;
-  background: green;
-}
-
-#blue {
-  grid-area: blue;
-  background: blue;
-}
-
-#red {
-  grid-area: red;
-  background: red;
-}
-
-#yellow {
-  grid-area: yellow;
-  background: yellow;
-}
-
-#orange {
-  grid-area: orange;
-  background: orange;
-}
-
-#black {
-  grid-area: black;
-  background: black;
-}
-
-#white {
-  grid-area: white;
-  background: white;
-}
-
-.palette {
-  display: inline-grid;
-  margin: auto;
-  grid-template-areas:
-    'noti1 green blue red'
-    'noti1 yellow orange black'
-    'noti2 white white white';
-  gap: 10px;
-  background-color: #2196F3;
-  padding: 10px;
-  width: 20vw;
-}
-
-.palette > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  margin: 5px 5px;
-  font-size: small;
-}
-
-/************************* index *************************/
-
-.mainDivBox {
-  display: inline-grid;
-  margin: 2% auto auto;
-  grid-template-areas:
-    'nav_post nav_gall'
-    'nav_const1 nav_const2';
-  grid-template-columns: 50% 50%;
-  width: 100%;
-  height: 22vw;
-  background: #377ba8;
-  align-items: center;
-}
-
-.mainDivBox > p {
-  background-color: white;
-  text-align: center;
-
-  padding: 20px 0;
-  margin: auto;
-  width: 90%;
-  height: 50%;
-  font-size: large;
-}
-
 a {
     text-decoration: none;
     color: inherit;
 }
 
-/*********************** index ***********************/
-
-.creditBox {
-  display: inline-grid;
-  margin: 2% auto auto;
-  grid-template-areas:
-    't0 t0 t0'
-    't1 t2 t3'
-    't4 t5 t6'
-    't7 t7 t7';
-  grid-template-columns: 33% 33% 33%;
-  width: 100%;
-  align-content: center;
+header .action {
+  display: block;
+  padding: 0.5rem;
 }
 
-.creditBox > p {
-  text-align: center;
-  padding: 20px 0;
-  margin: auto;
-  font-size: medium;
+/* content stuffs */
+
+.content:last-child {
+  margin-bottom: 0;
 }
 
-#t0 { grid-area: t0; }
-#t1 { grid-area: t1; }
-#t2 { grid-area: t2; }
-#t3 { grid-area: t3; }
-#t4 { grid-area: t4; }
-#t5 { grid-area: t5; }
-#t6 { grid-area: t6; }
-#t7 { grid-area: t7; }
+.content input {
+  margin-bottom: 1em;
+}
+
+.content {
+  padding: 0 1rem 1rem;
+}
+
+.content > header {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  align-items: flex-end;
+}
+
+.content > header h1 {
+  flex: auto;
+  margin: 1rem 0 0.25rem 0;
+}
+
+/* flash div style */
+
+.flash {
+  margin: 1em 0;
+  padding: 1em;
+  background: #cae6f6;
+  border: 1px solid #377ba8;
+}
