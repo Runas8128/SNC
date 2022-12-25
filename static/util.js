@@ -42,7 +42,7 @@ function getThumbnail(post) {
 
   const img = document.createElement('img');
   img.src = post.body;
-  img.width = 196; // 50%
+  img.width = 50; // 50%
 
   article.appendChild(img);
 
