@@ -46,5 +46,13 @@
     const listElem = document.getElementsByClassName('board_list')[0];
 
     posts.forEach(post => listElem.append(getSummary(post)));
+
+    window.onpageshow = event => {
+      if (
+        event.persisted ||
+        (performance.navigation.type === 2)) {
+        location.reload();
+      }
+    }
   </script>
 {% endblock %}
