@@ -58,7 +58,7 @@ function getThumbnail(post) {
   article.appendChild(img);
 
   article.appendChild(
-    generateSpan('about', `${post.title} by ${post.author} on ${post.created}`)
+    generateSpan(`${post.title} by ${post.author} on ${post.created}`, 'about')
   );
 
   return article;

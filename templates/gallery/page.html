@@ -31,14 +31,14 @@
     const nextThumbnail = getThumbnail({{ next|safe }});
     if (nextThumbnail) {
       const nextDiv = document.getElementById('move_next');
-      nextDiv.appendChild(generateSpan('arrow', '▲'));
+      nextDiv.appendChild(generateSpan('▲', 'arrow'));
       nextDiv.appendChild(nextThumbnail);
     }
 
     const prevThumbnail = getThumbnail({{ prev|safe }});
     if (prevThumbnail) {
       const prevDiv = document.getElementById('move_prev');
-      prevDiv.appendChild(generateSpan('arrow', '▼'));
+      prevDiv.appendChild(generateSpan('▼', 'arrow'));
       prevDiv.appendChild(prevThumbnail);
     }
   </script>
