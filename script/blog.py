@@ -14,9 +14,7 @@ bp = Blueprint('blog', __name__, url_prefix='/blog')
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT id, title, body, created, author'
-        ' FROM post'
-        ' ORDER BY id DESC'
+        'SELECT * FROM post ORDER BY id DESC'
     ).fetchall()
 
     page_id = int(request.args.get('page_id', '0'))
@@ -60,9 +58,7 @@ def create():
 
 def get_post(post_id):
     post = get_db().execute(
-        'SELECT id, title, body, created, author, password, view'
-        ' FROM post'
-        ' WHERE id = ?',
+        'SELECT * FROM post WHERE id = ?',
         (post_id,)
     ).fetchone()
 
@@ -112,20 +108,14 @@ def page(post_id):
     post = get_post(post_id)
 
     nextPost = get_db().execute(
-        'SELECT id, title, body, created, author, password'
-        ' FROM post'
-        ' WHERE id > ?'
-        ' ORDER BY id'
-        ' LIMIT 1',
+        'SELECT * FROM post'
+        ' WHERE id > ? ORDER BY id LIMIT 1',
         (post_id,)
     ).fetchone()
 
     prevPost = get_db().execute(
-        'SELECT id, title, body, created, author, password'
-        ' FROM post'
-        ' WHERE id < ?'
-        ' ORDER BY id DESC'
-        ' LIMIT 1',
+        'SELECT * FROM post'
+        ' WHERE id < ? ORDER BY id DESC LIMIT 1',
         (post_id,)
     ).fetchone()
 

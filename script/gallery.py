@@ -12,8 +12,7 @@ bp = Blueprint('gallery', __name__, url_prefix='/gallery')
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT id, title, body, created, author, view'
-        ' FROM gallery'
+        'SELECT * FROM gallery'
         ' ORDER BY created DESC'
     ).fetchall()
     return render_template('gallery/index.html', posts=posts)
@@ -52,8 +51,7 @@ def create():
 
 def get_post(post_id):
     post = get_db().execute(
-        'SELECT id, title, body, created, author, password'
-        ' FROM gallery'
+        'SELECT * FROM gallery'
         ' WHERE id = ?',
         (post_id,)
     ).fetchone()
@@ -78,20 +76,14 @@ def page(post_id):
     post = get_post(post_id)
 
     nextPost = get_db().execute(
-        'SELECT id, title, body, created, author, password'
-        ' FROM gallery'
-        ' WHERE id > ?'
-        ' ORDER BY id'
-        ' LIMIT 1',
+        'SELECT * FROM gallery'
+        ' WHERE id > ? ORDER BY id LIMIT 1',
         (post_id,)
     ).fetchone()
 
     prevPost = get_db().execute(
-        'SELECT id, title, body, created, author, password'
-        ' FROM gallery'
-        ' WHERE id < ?'
-        ' ORDER BY id DESC'
-        ' LIMIT 1',
+        'SELECT * FROM gallery'
+        ' WHERE id < ? ORDER BY id DESC LIMIT 1',
         (post_id,)
     ).fetchone()
 
