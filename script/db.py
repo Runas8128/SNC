@@ -1,14 +1,9 @@
+import datetime
 import sqlite3
 
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
-
-
-def row2dict(row):
-    if row:
-        return dict(zip(row.keys(), row))
-    return {}
 
 
 def init_app(app):
@@ -28,7 +23,16 @@ def get_db():
             current_app.config['DATABASE'],
             detect_types=sqlite3.PARSE_DECLTYPES
         )
-        g.db.row_factory = sqlite3.Row  # This enables to access columns by dict-style
+
+        def dict_factory(cursor, row):
+            d = {}
+            for idx, col in enumerate(cursor.description):
+                if isinstance(row[idx], datetime.datetime):
+                    d[col[0]] = row[idx].strftime('%Y-%m-%d')
+                else:
+                    d[col[0]] = row[idx]
+            return d
+        g.db.row_factory = dict_factory
 
     return g.db
 

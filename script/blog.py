@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 
 from math import ceil
 
-from .db import get_db, row2dict
+from .db import get_db
 
 bp = Blueprint('blog', __name__, url_prefix='/blog')
 
@@ -111,18 +111,18 @@ def page(post_id):
         'SELECT * FROM post'
         ' WHERE id > ? ORDER BY id LIMIT 1',
         (post_id,)
-    ).fetchone()
+    ).fetchone() or {}
 
     prevPost = get_db().execute(
         'SELECT * FROM post'
         ' WHERE id < ? ORDER BY id DESC LIMIT 1',
         (post_id,)
-    ).fetchone()
+    ).fetchone() or {}
 
     return render_template(
         'blog/page.html',
         post=post,
-        next=row2dict(nextPost), prev=row2dict(prevPost),
+        next=nextPost, prev=prevPost,
     )
 
 
