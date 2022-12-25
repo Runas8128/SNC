@@ -8,7 +8,7 @@
 {% block content %}
   <div id="gallery_board"></div>
 
-  <script src="{{ url_for('static', filename='util.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/util.js') }}"></script>
   <script>
     const posts = {{ posts|safe }};
     const listElem = document.getElementById('gallery_board');
