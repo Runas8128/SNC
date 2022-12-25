@@ -19,10 +19,10 @@
 
         if (PW !== input) {
           alert('비밀번호가 일치하지 않습니다.');
-          opener.location.href = '{{ url_for(fallback, post_id=post['ID']) }}';
+          opener.location.href = '{{ url_for(fallback, post_id=post['id']) }}';
         }
         else {
-          opener.location.href = '{{ url_for(callback, post_id=post['ID']) }}';
+          opener.location.href = '{{ url_for(callback, post_id=post['id']) }}';
           self.close();
         }
       });
