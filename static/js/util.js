@@ -58,3 +58,47 @@ function getThumbnail(post) {
 
   return rowElement;
 }
+
+function setPageHeader(post) {
+  const topDiv = document.getElementsByClassName('post_page')[0];
+  const header = document.createElement('header');
+  const div = document.createElement('div');
+
+  const h1 = document.createElement('h1');
+  h1.innerHTML = post.title;
+  div.appendChild(h1);
+
+  const about = document.createElement('div');
+  about.classList.add('about');
+  about.innerHTML = `작성자: ${post.author} / 게시일: ${post.created}`;
+  div.appendChild(about);
+
+  header.appendChild(div);
+  topDiv.insertBefore(header, topDiv.firstChild);
+}
+
+function setPageFooter(next, prev) {
+  const topDiv = document.getElementsByClassName('post_page')[0];
+
+  const hr = document.createElement('hr');
+  topDiv.appendChild(hr);
+
+  const table = document.createElement('table');
+  table.setAttribute('id', 'move_page');
+  table.appendChild(makeTR(next, 'move_next', '▲'));
+  table.appendChild(makeTR(prev, 'move_prev', '▼'));
+  topDiv.appendChild(table);
+}
+
+function makeTR(post, id, arrow) {
+  const row = document.createElement('tr');
+  row.setAttribute('id', id);
+
+  const summary = getSummary(post);
+  if (summary) {
+    row.appendChild(generateSpan(arrow, 'arrow'));
+    row.appendChild(summary);
+  }
+
+  return row;
+}

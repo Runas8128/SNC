@@ -7,6 +7,8 @@
   </div>
 
   <style>
+    .about { color: #777; }
+
     table { width: 100%; }
     td { text-align: center; }
 
@@ -21,40 +23,15 @@
 
 {% block content %}
   <article class="post_page">
-    <header>
-      <div>
-        <h1>{{ post['title'] }}</h1>
-        <div class="about">by {{ post['author'] }} on {{ post['created'] }}</div>
-      </div>
-    </header>
-
     <article>
       <img src="{{ post['body'] }}">
     </article>
-
-    <hr>
-
-    <table id="move_page">
-      <tr id="move_next"></tr>
-      <tr id="move_prev"></tr>
-    </table>
   </article>
 
   <script src="{{ url_for('static', filename='js/util.js') }}"></script>
   <script>
-    const nextThumbnail = getThumbnail({{ next|safe }});
-    if (nextThumbnail) {
-      const nextDiv = document.getElementById('move_next');
-      nextDiv.appendChild(generateSpan('▲', 'arrow'));
-      nextDiv.appendChild(nextThumbnail);
-    }
-
-    const prevThumbnail = getThumbnail({{ prev|safe }});
-    if (prevThumbnail) {
-      const prevDiv = document.getElementById('move_prev');
-      prevDiv.appendChild(generateSpan('▼', 'arrow'));
-      prevDiv.appendChild(prevThumbnail);
-    }
+    setPageHeader({{ post|safe }});
+    setPageFooter({{ next|safe }}, {{ prev|safe }});
   </script>
 
   <script>
