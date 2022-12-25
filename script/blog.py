@@ -60,7 +60,7 @@ def create():
 
 def get_post(post_id):
     post = get_db().execute(
-        'SELECT id, title, body, created, author, password'
+        'SELECT id, title, body, created, author, password, view'
         ' FROM post'
         ' WHERE id = ?',
         (post_id,)

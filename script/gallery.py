@@ -12,7 +12,7 @@ bp = Blueprint('gallery', __name__, url_prefix='/gallery')
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT id, title, body, created, author'
+        'SELECT id, title, body, created, author, view'
         ' FROM gallery'
         ' ORDER BY created DESC'
     ).fetchall()

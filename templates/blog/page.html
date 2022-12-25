@@ -27,9 +27,9 @@
           <a href='{{ url_for('blog.page', post_id=next['id'] or 0) }}'>
             <span class="id">{{ next['id'] }}</span>
             <span class="title">{{ next['title'] }}</span>
-            <span class="postID">{{ next['author'] }}</span>
-            <span class="postID">{{ next['created'].strftime('%Y-%m-%d') }}</span>
-{#            <span class="postID">{ count }</span>#}
+            <span class="author">{{ next['author'] }}</span>
+            <span class="created">{{ next['created'].strftime('%Y-%m-%d') }}</span>
+            <span class="view">{{ next['view'] }}</span>
           </a>
         </div>
       {% endif %}
@@ -38,9 +38,9 @@
           <a href='{{ url_for('blog.page', post_id=prev['id'] or 0) }}'>
             <span class="id">{{ prev['id'] }}</span>
             <span class="title">{{ prev['title'] }}</span>
-            <span class="postID">{{ prev['author'] }}</span>
-            <span class="postID">{{ prev['created'].strftime('%Y-%m-%d') }}</span>
-{#            <span class="postID">{ count }</span>#}
+            <span class="author">{{ prev['author'] }}</span>
+            <span class="created">{{ prev['created'].strftime('%Y-%m-%d') }}</span>
+            <span class="view">{{ prev['view'] }}</span>
           </a>
         </div>
       {% endif %}
