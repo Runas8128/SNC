@@ -18,19 +18,19 @@
         </div>
       </div>
       <div class="board_page">
-          <a href="{{ url_for('blog.index', page_id=1) }}" class="bt first"><<</a>
-          <a href="{{ url_for('blog.index', page_id=[page_id - 1, 1]|max) }}" class="bt prev"><</a>
+          <a href="{{ url_for('blog.index', page_id=0) }}" class="bt first"><<</a>
+          <a href="{{ url_for('blog.index', page_id=[page_id - 1, 0]|max) }}" class="bt prev"><</a>
 
           {% for _id in range(page_count) %}
             <a href="{{ url_for('blog.index', page_id=_id) }}" class="num">{{ _id + 1 }}</a>
           {% endfor %}
 
           {% if page_count == 0 %}
-            <a href="{{ url_for('blog.index', page_id=1) }}" class="num">1</a>
+            <a href="{{ url_for('blog.index', page_id=0) }}" class="num">1</a>
           {% endif %}
 
-          <a href="{{ url_for('blog.index', page_id=[page_count, page_id + 1]|min) }}" class="bt next">></a>
-          <a href="{{ url_for('blog.index', page_id=page_count) }}" class="bt last">>></a>
+          <a href="{{ url_for('blog.index', page_id=[page_count - 1, page_id + 1]|min) }}" class="bt next">></a>
+          <a href="{{ url_for('blog.index', page_id=page_count - 1) }}" class="bt last">>></a>
         </div>
     </div>
   </div>
