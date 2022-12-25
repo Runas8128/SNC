@@ -6,18 +6,19 @@
 {% endblock %}
 
 {% block content %}
-  {% for post in posts %}
-    <article
-      class="post"
-      style="cursor: pointer; width: fit-content"
-      onclick="location.href='{{ url_for('gallery.page', post_id=post['id']) }}'">
-      <img src="{{ post['body'] }}" width="50%" />
-      <div class="about">{{ post['title'] }} by {{ post['author'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-    </article>
+  <div id="gallery_board"></div>
 
-    {% if not loop.last %}
-      <hr>
-    {% endif %}
+  <script src="{{ url_for('static', filename='util.js') }}"></script>
+  <script>
+    const posts = {{ posts|safe }};
+    const listElem = document.getElementById('gallery_board');
 
-  {% endfor %}
+    posts.forEach((post, index) => {
+      listElem.append(getThumbnail(post));
+
+      if (index !== posts.length - 1) {
+        listElem.appendChild(document.createElement('hr'));
+      }
+    });
+  </script>
 {% endblock %}

@@ -9,7 +9,7 @@
     <header>
       <div>
         <h1>{{ post['title'] }}</h1>
-        <div class="about">by {{ post['author'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        <div class="about">by {{ post['author'] }} on {{ post['created'] }}</div>
       </div>
       <input type="button" value="Delete" onclick="checkPW('delete');">
     </header>
@@ -21,32 +21,27 @@
     <hr>
 
     <div id="move_page">
-      {% if next %}
-        <div id="move_next">
-          <a href='{{ url_for('gallery.page', post_id=next['id'] or 0) }}'>
-            <span class="id">{{ next['id'] }}</span>
-            <span class="title">{{ next['title'] }}</span>
-            <span class="author">{{ next['author'] }}</span>
-            <span class="created">{{ next['created'].strftime('%Y-%m-%d') }}</span>
-            <span class="view">{{ next['view'] }}</span>
-          </a>
-        </div>
-      {% endif %}
-      {% if prev %}
-        <div id="move_prev">
-          <a href='{{ url_for('gallery.page', post_id=prev['id'] or 0) }}'>
-            <span class="id">{{ prev['id'] }}</span>
-            <span class="title">{{ prev['title'] }}</span>
-            <span class="author">{{ prev['author'] }}</span>
-            <span class="created">{{ prev['created'].strftime('%Y-%m-%d') }}</span>
-            <span class="view">{{ prev['view'] }}</span>
-          </a>
-        </div>
-      {% endif %}
+      <div id="move_next"></div>
+      <div id="move_prev"></div>
     </div>
   </article>
 
-  <script></script>
+  <script src="{{ url_for('static', filename='util.js') }}"></script>
+  <script>
+    const nextThumbnail = getThumbnail({{ next|safe }});
+    if (nextThumbnail) {
+      const nextDiv = document.getElementById('move_next');
+      nextDiv.appendChild(generateSpan('arrow', '▲'));
+      nextDiv.appendChild(nextThumbnail);
+    }
+
+    const prevThumbnail = getThumbnail({{ prev|safe }});
+    if (prevThumbnail) {
+      const prevDiv = document.getElementById('move_prev');
+      prevDiv.appendChild(generateSpan('arrow', '▼'));
+      prevDiv.appendChild(prevThumbnail);
+    }
+  </script>
 
   <script>
     function checkPW(action) {

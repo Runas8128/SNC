@@ -16,24 +16,8 @@
           <span class="date">작성일</span>
           <span class="count">조회</span>
         </div>
-
-        {% for post in posts %}
-          <a
-            class="post"
-            href = {{ url_for('blog.page', post_id=post['id']) }}>
-            <span class="num"> {{ post['id'] }} </span>
-            <span class="title"> {{ post['title'] }} </span>
-            <span class="writer"> {{ post['author'] }} </span>
-            <span class="date"> {{ post['created'].strftime('%Y-%m-%d') }} </span>
-            <span class="count"> 0 </span>
-          </a>
-
-          {% if not loop.last %}
-            <hr>
-          {% endif %}
-        {% endfor %}
-
-        <div class="board_page">
+      </div>
+      <div class="board_page">
           <a href="{{ url_for('blog.index', page_id=1) }}" class="bt first"><<</a>
           <a href="{{ url_for('blog.index', page_id=[page_id - 1, 1]|max) }}" class="bt prev"><</a>
 
@@ -48,7 +32,20 @@
           <a href="{{ url_for('blog.index', page_id=[page_count, page_id + 1]|min) }}" class="bt next">></a>
           <a href="{{ url_for('blog.index', page_id=page_count) }}" class="bt last">>></a>
         </div>
-      </div>
     </div>
   </div>
+
+  <script src="{{ url_for('static', filename='util.js') }}"></script>
+  <script>
+    const posts = {{ posts|safe }};
+    const listElem = document.getElementsByClassName('board_list')[0];
+
+    posts.forEach((post, index) => {
+      listElem.append(getSummary(post));
+
+      if (index !== posts.length - 1) {
+        listElem.appendChild(document.createElement('hr'));
+      }
+    });
+  </script>
 {% endblock %}
