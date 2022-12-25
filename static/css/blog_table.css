@@ -13,26 +13,6 @@ td {
   font-size: medium;
 }
 
-td.num {
-  width: 10%;
-}
-
-td.title {
-  width: 45%;
-}
-
-td.writer {
-  width: 20%;
-}
-
-td.date {
-  width: 15%;
-}
-
-td.count {
-  width: 10%;
-}
-
 .board_page {
   display: flex;
   flex-wrap: wrap;

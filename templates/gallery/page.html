@@ -2,6 +2,18 @@
 
 {% block header %}
   <h1>{% block title %}Gallery{% endblock %}</h1>
+
+  <style>
+    table { width: 100%; }
+    td { text-align: center; }
+
+    td.num { width: 7.5%; }
+    td.title { width: calc(50% - 75px); }
+    td.image { width: 75px; }
+    td.writer { width: 15%; }
+    td.date { width: 15%; }
+    td.count { width: 7.5%; }
+  </style>
 {% endblock %}
 
 {% block content %}
@@ -20,10 +32,10 @@
 
     <hr>
 
-    <div id="move_page">
-      <div id="move_next"></div>
-      <div id="move_prev"></div>
-    </div>
+    <table id="move_page">
+      <tr id="move_next"></tr>
+      <tr id="move_prev"></tr>
+    </table>
   </article>
 
   <script src="{{ url_for('static', filename='js/util.js') }}"></script>

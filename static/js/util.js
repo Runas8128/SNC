@@ -6,17 +6,14 @@ function generateSpan(text, clazz) {
   return span
 }
 
-function generateTD(text, clazz, href) {
+function generateTD(clazz, child) {
   const td = document.createElement('td');
 
-  if (href) {
-    const a = document.createElement('a');
-    a.href = href;
-    a.innerHTML = text;
-    td.appendChild(a);
+  if (child instanceof Node) {
+    td.appendChild(child);
   }
   else {
-    td.innerHTML = text;
+    td.innerHTML = child;
   }
 
   td.classList.add(clazz);
@@ -27,14 +24,15 @@ function getSummary(post) {
   if (Object.keys(post).length === 0) return;
 
   const rowElement = document.createElement('tr');
-
   rowElement.classList.add('post');
+  rowElement.style.cursor = 'pointer';
+  rowElement.onclick = () => location.href = `/blog/${post.id}/page`;
 
-  rowElement.appendChild(generateTD(post.id, 'num'));
-  rowElement.appendChild(generateTD(post.title, 'title', `/blog/${post.id}/page`));
-  rowElement.appendChild(generateTD(post.author, 'writer'));
-  rowElement.appendChild(generateTD(post.created, 'date'));
-  rowElement.appendChild(generateTD(post.view, 'count'));
+  rowElement.appendChild(generateTD('num', post.id));
+  rowElement.appendChild(generateTD('title', post.title));
+  rowElement.appendChild(generateTD('writer', post.author));
+  rowElement.appendChild(generateTD('date', post.created));
+  rowElement.appendChild(generateTD('count', post.view));
 
   return rowElement;
 }
@@ -42,24 +40,21 @@ function getSummary(post) {
 function getThumbnail(post) {
   if (Object.keys(post).length === 0) return;
 
-  const article = document.createElement('article');
-
-  article.classList.add('post');
-  article.style.cursor = 'pointer';
-  article.style.width = 'fit-content';
-  article.onclick = () => {
-    location.href = `/gallery/${post.id}/page`;
-  }
+  const rowElement = document.createElement('tr');
+  rowElement.classList.add('post');
+  rowElement.style.cursor = 'pointer';
+  rowElement.onclick = () => location.href = `/gallery/${post.id}/page`;
 
   const img = document.createElement('img');
   img.src = post.body;
-  img.width = 50; // 50%
+  img.width = 75;
 
-  article.appendChild(img);
+  rowElement.appendChild(generateTD('num', post.id));
+  rowElement.appendChild(generateTD('title', post.title));
+  rowElement.appendChild(generateTD('image', img));
+  rowElement.appendChild(generateTD('writer', post.author));
+  rowElement.appendChild(generateTD('date', post.created));
+  rowElement.appendChild(generateTD('count', post.view));
 
-  article.appendChild(
-    generateSpan(`${post.title} by ${post.author} on ${post.created}`, 'about')
-  );
-
-  return article;
+  return rowElement;
 }
