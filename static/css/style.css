@@ -79,8 +79,7 @@ header > div#button {
 header > div#button > * {
   display: block;
   width: fit-content;
-  margin-left: auto;
-  margin-right: 0;
+  margin: 1% 1% 2.5% auto;
 }
 
 /* flash div style */
