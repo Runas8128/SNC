@@ -6,13 +6,13 @@
 
 {% block header %}
   <h1 onclick="location.href = {{ url_for('blog.index') }}" style="cursor: pointer;">
-    {% block title %}Posts{% endblock %}
+    {% block title %}게시판{% endblock %}
   </h1>
 {% endblock %}
 
 {% block button %}
-  <a onclick="checkPW('edit');" style="cursor: pointer">Edit</a>
-  <a onclick="checkPW('delete');" style="cursor: pointer">Delete</a>
+  <a onclick="checkPW('edit');" style="cursor: pointer">수정하기</a>
+  <a onclick="checkPW('delete');" style="cursor: pointer">삭제하기</a>
 {% endblock %}
 
 {% block content %}

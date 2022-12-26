@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block header %}
-  <h1>{% block title %}New Picture{% endblock %}</h1>
+  <h1>{% block title %}그림 그리기{% endblock %}</h1>
 {% endblock %}
 
 {% block button %}
@@ -15,32 +15,32 @@
 
 {% block content %}
   <form>
-    <label for="title">Title</label>
+    <label for="title">제목</label>
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
     <label for="user_id">ID</label>
     <input name="user_id" id="user_id" value="{{ request.form['user_id'] }}" required>
-    <label for="user_pw">PW</label>
+    <label for="user_pw">비밀번호</label>
     <input type="password" name="user_pw" id="user_pw" value="{{ request.form['user_pw'] }}" required>
 
-    <label for="canvasDiv">Body</label>
+    <label for="canvasDiv" style="color: #777; font-size: small">멋진 그림을 그려보세요!</label>
     <div id="canvasDiv" class="container">
       <canvas id="canvas" width="200" height="200" style="border: 2px solid"></canvas>
       <div class="palette">
-        <div id="noti1">Choose Color</div>
+        <div id="noti1">펜 고르기</div>
         <div id="green"   onclick="canvas.setPen(this)"></div>
         <div id="blue"    onclick="canvas.setPen(this)"></div>
         <div id="red"     onclick="canvas.setPen(this)"></div>
         <div id="yellow"  onclick="canvas.setPen(this)"></div>
         <div id="orange"  onclick="canvas.setPen(this)"></div>
         <div id="black"   onclick="canvas.setPen(this)"></div>
-        <div id="noti2">Eraser</div>
+        <div id="noti2">지우개 >>></div>
         <div id="white"   onclick="canvas.setPen(this)"></div>
       </div>
     </div>
 
     <div>
-      <input type="button" value="save" id="submit">
-      <input type="button" value="clear" id="clr" size="23" onclick="canvas.erase()">
+      <input type="button" value="저장" id="submit">
+      <input type="button" value="초기화" id="clr" size="23" onclick="canvas.erase()">
     </div>
   </form>
 
@@ -73,7 +73,7 @@
           }
         },
         error: data => {
-          alert('There was an error uploading your file!');
+          alert('파일 업로드중 문제가 발생했습니다.');
         }
       }));
   </script>
