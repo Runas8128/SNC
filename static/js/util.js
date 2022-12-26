@@ -64,9 +64,9 @@ function setPageHeader(post) {
   const header = document.createElement('header');
   const div = document.createElement('div');
 
-  const h1 = document.createElement('h1');
-  h1.innerHTML = post.title;
-  div.appendChild(h1);
+  const h3 = document.createElement('h3');
+  h3.innerHTML = post.title;
+  div.appendChild(h3);
 
   const about = document.createElement('div');
   about.classList.add('about');
