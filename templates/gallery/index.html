@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blog_table.css') }}">
+  <style> td.image { width: 75px; } </style>
+{% endblock %}
+
 {% block header %}
   <h1>{% block title %}Gallery{% endblock %}</h1>
-
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/blog_table.css') }}">
-  <style>
-    td.image { width: 75px; }
-  </style>
 {% endblock %}
 
 {% block button %}

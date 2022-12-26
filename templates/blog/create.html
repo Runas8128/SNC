@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}New Post{% endblock %}</h1>
-
+{% block css %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
   <style>
     .content textarea {
@@ -10,6 +8,10 @@
       resize: vertical;
     }
   </style>
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}New Post{% endblock %}</h1>
 {% endblock %}
 
 {% block button %}
