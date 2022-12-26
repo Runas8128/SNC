@@ -13,6 +13,16 @@ td {
   font-size: medium;
 }
 
+.about { color: #777; }
+
+table { width: 100%; }
+td { text-align: center; }
+
+td.num { width: 7.5%; }
+td.writer { width: 15%; }
+td.date { width: 15%; }
+td.count { width: 7.5%; }
+
 .board_page {
   display: flex;
   flex-wrap: wrap;
