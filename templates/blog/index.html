@@ -2,9 +2,12 @@
 
 {% block header %}
   <h1>{% block title %}Posts{% endblock %}</h1>
-  <a class="action" href="{{ url_for('blog.create') }}">New</a>
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/blog_table.css') }}">
+{% endblock %}
+
+{% block button %}
+  <a class="action" href="{{ url_for('blog.create') }}">New</a>
 {% endblock %}
 
 {% block content %}

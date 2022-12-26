@@ -4,23 +4,12 @@
   <h1 onclick="location.href = {{ url_for('gallery.index') }}" style="cursor: pointer;">
     {% block title %}Gallery{% endblock %}
   </h1>
-  <div class="editButtons">
-    <input type="button" value="Delete" onclick="checkPW('delete');">
-  </div>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blog_table.css') }}">
+  <style> td.image { width: 75px; } </style>
+{% endblock %}
 
-  <style>
-    .about { color: #777; }
-
-    table { width: 100%; }
-    td { text-align: center; }
-
-    td.num { width: 7.5%; }
-    td.title { width: calc(50% - 75px); }
-    td.image { width: 75px; }
-    td.writer { width: 15%; }
-    td.date { width: 15%; }
-    td.count { width: 7.5%; }
-  </style>
+{% block button %}
+  <a onclick="checkPW('delete');" style="cursor: pointer">Delete</a>
 {% endblock %}
 
 {% block content %}

@@ -51,11 +51,36 @@ header .action {
   border-bottom: 1px solid lightgray;
   display: flex;
   align-items: flex-end;
+  height: 60px;
 }
 
 .content > header h1 {
   flex: auto;
   margin: 1rem 0 0.25rem 0;
+}
+
+header > div#home {
+  width: 20%;
+}
+header > div#home > span {
+  font-size: xx-large;
+}
+
+header > div#header {
+  width: 60%;
+}
+header > div#header > h1 {
+  text-align: center;
+}
+
+header > div#button {
+  width: 20%;
+}
+header > div#button > * {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 /* flash div style */

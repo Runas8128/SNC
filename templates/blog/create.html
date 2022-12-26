@@ -2,15 +2,18 @@
 
 {% block header %}
   <h1>{% block title %}New Post{% endblock %}</h1>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
-  <a class="action" onclick="history.go(-1);" style="cursor: pointer; font-size: x-large">🔙</a>
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
   <style>
     .content textarea {
       min-height: 12em;
       resize: vertical;
     }
   </style>
+{% endblock %}
+
+{% block button %}
+  <a class="action" onclick="history.go(-1);" style="cursor: pointer; font-size: x-large">🔙</a>
 {% endblock %}
 
 {% block content %}
