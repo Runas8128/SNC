@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block button %}
-  <a class="action" onclick="history.go(-1);" style="cursor: pointer; font-size: xx-large">↩️</a>
+  <a class="action" onclick="history.go(-1);" style="cursor: pointer;" >↩️ 뒤로가기</a>
 {% endblock %}
 
 {% block content %}
@@ -26,6 +26,7 @@
     <input name="user_id" id="user_id" value="{{ request.form['user_id'] }}" required>
     <label for="user_pw">비밀번호</label>
     <input type="password" name="user_pw" id="user_pw" value="{{ request.form['user_pw'] }}" required>
+    <label>내용</label>
     <textarea name="body" id="body" placeholder="멋진 글을 작성해보세요!">
       {{ request.form['body'] }}
     </textarea>

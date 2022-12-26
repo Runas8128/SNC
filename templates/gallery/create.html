@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block button %}
-  <a class="action" onclick="history.go(-1);" style="cursor: pointer; font-size: xx-large">↩️</a>
+  <a class="action" onclick="history.go(-1);" style="cursor: pointer;">↩️ 뒤로가기</a>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +24,7 @@
 
     <label for="canvasDiv" style="color: #777; font-size: small">멋진 그림을 그려보세요!</label>
     <div id="canvasDiv" class="container">
-      <canvas id="canvas" width="200" height="200" style="border: 2px solid"></canvas>
+      <canvas id="canvas" width="400" height="400" style="border: 2px solid"></canvas>
       <div class="palette">
         <div id="noti1">펜 고르기</div>
         <div id="green"   onclick="canvas.setPen(this)"></div>
@@ -38,11 +38,11 @@
       </div>
     </div>
 
-    <div>
-      <input type="button" value="저장" id="submit">
-      <input type="button" value="초기화" id="clr" size="23" onclick="canvas.erase()">
-    </div>
   </form>
+  <div>
+    <input type="button" value="저장" id="submit">
+    <input type="button" value="초기화" id="clr" size="23" onclick="canvas.erase()">
+  </div>
 
   <script type="text/javascript" src="{{ url_for('static', filename='js/canvasHandler.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
