@@ -102,3 +102,42 @@ function makeTR(post, id, arrow, summarizer) {
 
   return row;
 }
+
+function makeLink(info, { github, instagram }) {
+  const item = document.createElement('div');
+  item.classList.add('nav_item');
+
+  const infoSpan = document.createElement('span');
+  infoSpan.innerHTML = info;
+  item.appendChild(infoSpan);
+
+  const a = document.createElement('a');
+  a.target = "_blank";
+  if (github) {
+    a.href = `https://www.github.com/${github}`;
+    a.appendChild(getGithubImg());
+  }
+  else if (instagram) {
+    a.href = `https://www.instagram.com/${instagram}/`;
+    a.appendChild(getInstaImg());
+  }
+  item.appendChild(a);
+
+  return item;
+}
+
+function getGithubImg() {
+  const img = document.createElement('img');
+  img.style.verticalAlign = 'bottom';
+  img.src = "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png";
+  img.alt = "github link";
+  return img;
+}
+
+function getInstaImg() {
+  const img = document.createElement('img');
+  img.style.verticalAlign = 'bottom';
+  img.src = "https://static.cdninstagram.com/rsrc.php/yS/r/f_5NUHW7AZC.ico";
+  img.alt = "instagram link";
+  return img;
+}
