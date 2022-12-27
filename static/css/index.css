@@ -1,11 +1,6 @@
 /* main navigator div box */
 
-.btnLeft {
-  display: inline-block;
-  width: 32%;
-}
-
-.btnRight {
+.btnLeft, .btnRight {
   display: inline-block;
   width: 32%;
 }
