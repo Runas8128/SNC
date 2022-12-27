@@ -83,15 +83,4 @@
     const rightDiv = document.getElementsByClassName('btnRight')[0];
     rightDiv.addEventListener('click', () => manager.right());
   </script>
-
-{#  <script>#}
-{#    document.getElementById('nav_post')#}
-{#      .addEventListener('click', () => {#}
-{#        location.href = {{ url_for('blog.index') }};#}
-{#      });#}
-{#    document.getElementById('nav_gall')#}
-{#      .addEventListener('click', () => {#}
-{#        location.href = {{ url_for('gallery.index') }};#}
-{#      });#}
-{#  </script>#}
 {% endblock %}
