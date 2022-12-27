@@ -9,11 +9,30 @@
 {% endblock %}
 
 {% block content %}
-  <div class="mainDivBox">
-    <p id="nav_post" style="cursor: pointer">게시판</p>
-    <p id="nav_gall"  style="cursor: pointer">방명록 그리기</p>
-    <p id="nav_const1">🚧 공사중입니다 🚧</p>
-    <p id="nav_const2">🚧 공사중입니다 🚧</p>
+  <div class="mainNavigator">
+    <div class="btnLeft">
+      <img src="{{ url_for('static', filename='assets/left.png') }}">
+    </div>
+    <div class="wrapper">
+      <div class="mainDivBox">
+        <div class="nav_item">
+          <a href="{{ url_for('blog.index') }}">
+            <img src="{{ url_for('static', filename='assets/blog.png') }}">
+          </a>
+        </div>
+        <div class="nav_item">
+          <a href="{{ url_for('gallery.index') }}">
+            <img src="{{ url_for('static', filename='assets/gallery.png') }}">
+          </a>
+        </div>
+        <div class="nav_item">
+          <img src="{{ url_for('static', filename='assets/survey.png') }}" id="survey">
+        </div>
+      </div>
+    </div>
+    <div class="btnRight">
+      <img src="{{ url_for('static', filename='assets/right.png') }}">
+    </div>
   </div>
 
   <div class="creditBox">
@@ -36,13 +55,43 @@
   </div>
 
   <script>
-    document.getElementById('nav_post')
-      .addEventListener('click', () => {
-        location.href = {{ url_for('blog.index') }};
-      });
-    document.getElementById('nav_gall')
-      .addEventListener('click', () => {
-        location.href = {{ url_for('gallery.index') }};
-      });
+    class NavManager {
+      constructor(box) {
+        this.loc = 0;
+        this.box = box;
+      }
+
+      left() {
+        this.loc -= 1;
+        if (this.loc < 0) this.loc = 2;
+        this.box.style.transform = `translate(-${this.loc * 310}px)`;
+      }
+
+      right() {
+        this.loc += 1;
+        if (this.loc > 2) this.loc = 0;
+        this.box.style.transform = `translate(-${this.loc * 310}px)`;
+      }
+    }
+    manager = new NavManager(
+      document.getElementsByClassName('mainDivBox')[0]
+    );
+
+    const leftDiv = document.getElementsByClassName('btnLeft')[0];
+    leftDiv.addEventListener('click', () => manager.left());
+
+    const rightDiv = document.getElementsByClassName('btnRight')[0];
+    rightDiv.addEventListener('click', () => manager.right());
   </script>
+
+{#  <script>#}
+{#    document.getElementById('nav_post')#}
+{#      .addEventListener('click', () => {#}
+{#        location.href = {{ url_for('blog.index') }};#}
+{#      });#}
+{#    document.getElementById('nav_gall')#}
+{#      .addEventListener('click', () => {#}
+{#        location.href = {{ url_for('gallery.index') }};#}
+{#      });#}
+{#  </script>#}
 {% endblock %}
