@@ -28,6 +28,10 @@ def create_app(test_config=None):
     def root():
         return render_template('index.html')
 
+    @app.route('/credit')
+    def credit():
+        return render_template('credit.html')
+
     app.add_url_rule('/', endpoint='index')
 
     from script import db
