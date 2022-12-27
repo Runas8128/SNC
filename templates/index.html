@@ -11,7 +11,7 @@
 {% block content %}
   <div class="mainNavigator">
     <div class="btnLeft">
-      <img src="{{ url_for('static', filename='assets/left.png') }}">
+      <span class="btnLeftLabel"> < </span>
     </div>
     <div class="wrapper">
       <div class="mainDivBox">
@@ -31,50 +31,15 @@
       </div>
     </div>
     <div class="btnRight">
-      <img src="{{ url_for('static', filename='assets/right.png') }}">
+      <span class="btnRightLabel"> > </span>
     </div>
   </div>
 
-  <div class="creditBox">
-    <p id="t0">produced by Team_Alpha 😎</p>
-    <p id="t1">-이름 1</p>
-    <p id="t2">-이름 2</p>
-    <p id="t3">-이름 3</p>
-    <p id="t4">-이름 4</p>
-    <p id="t5">-이름 5</p>
-    <p id="t6">
-      10921 조민성 <a href="https://github.com/Runas8128" target="_blank">
-        <img
-         width="20"
-         style="vertical-align: bottom"
-         src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-         alt="github link"/>
-      </a>
-    </p>
-    <p id="t7">powered by shs</p>
-  </div>
-
+  <script src="{{ url_for('static', filename='js/NavManager.js') }}"></script>
   <script>
-    class NavManager {
-      constructor(box) {
-        this.loc = 0;
-        this.box = box;
-      }
-
-      left() {
-        this.loc -= 1;
-        if (this.loc < 0) this.loc = 2;
-        this.box.style.transform = `translate(-${this.loc * 310}px)`;
-      }
-
-      right() {
-        this.loc += 1;
-        if (this.loc > 2) this.loc = 0;
-        this.box.style.transform = `translate(-${this.loc * 310}px)`;
-      }
-    }
     manager = new NavManager(
-      document.getElementsByClassName('mainDivBox')[0]
+      document.getElementsByClassName('mainDivBox')[0],
+      3
     );
 
     const leftDiv = document.getElementsByClassName('btnLeft')[0];

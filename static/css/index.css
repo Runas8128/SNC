@@ -1,15 +1,41 @@
 /* main navigator div box */
 
+.mainNavigator {
+  padding-top: 120px;
+  padding-bottom: 120px;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}
+
 .btnLeft, .btnRight {
   display: inline-block;
-  width: 32%;
+  width: 30%;
   cursor: pointer;
+}
+
+.btnLeftLabel, .btnRightLabel {
+  padding-top: 40%;
+}
+
+.mainNavigator > div {
+  display: inline-block;
+}
+
+.btnLeftLabel {
+  font-size: 100px;
+  float: right;
+}
+
+.btnRightLabel {
+  font-size: 100px;
+  float: left;
 }
 
 .wrapper {
   display: inline-block;
   overflow: hidden;
-  width: 34%;
+  width: 40%;
 }
 
 .mainDivBox {
@@ -18,7 +44,7 @@
 }
 
 .nav_item {
-  width: 310px;
+  width: 370px;
   float: left;
 }
 
