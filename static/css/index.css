@@ -3,6 +3,7 @@
 .btnLeft, .btnRight {
   display: inline-block;
   width: 32%;
+  cursor: pointer;
 }
 
 .wrapper {
