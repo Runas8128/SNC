@@ -8,3 +8,5 @@ instance
 *test*
 
 __pycache__
+
+.ebignore
