@@ -27,9 +27,7 @@
     <label for="user_pw">비밀번호</label>
     <input type="password" name="user_pw" id="user_pw" value="{{ request.form['user_pw'] }}" required>
     <label>내용</label>
-    <textarea name="body" id="body" placeholder="멋진 글을 작성해보세요!">
-      {{ request.form['body'] }}
-    </textarea>
+    <textarea name="body" id="body" placeholder="멋진 글을 작성해보세요!">{{ request.form['body'] }}</textarea>
     <input type="submit" value="저장">
   </form>
 {% endblock %}
