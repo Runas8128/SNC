@@ -9,48 +9,31 @@
 {% endblock %}
 
 {% block content %}
-  <div class="mainNavigator">
-    <div class="btnLeft">
-      <span class="btnLeftLabel"> < </span>
+  <div class="mainNavigator"></div>
+
+  <div class="mainDivBox">
+    <div class="nav_item">
+      <a href="{{ url_for('blog.index') }}">
+        <img src="{{ url_for('static', filename='assets/blog.png') }}">
+      </a>
     </div>
-    <div class="wrapper">
-      <div class="mainDivBox">
-        <div class="nav_item">
-          <a href="{{ url_for('blog.index') }}">
-            <img src="{{ url_for('static', filename='assets/blog.png') }}">
-          </a>
-        </div>
-        <div class="nav_item">
-          <a href="{{ url_for('gallery.index') }}">
-            <img src="{{ url_for('static', filename='assets/gallery.png') }}">
-          </a>
-        </div>
-        <div class="nav_item" id="survey" style="cursor: pointer;">
-          <img src="{{ url_for('static', filename='assets/survey.png') }}">
-        </div>
-      </div>
+    <div class="nav_item">
+      <a href="{{ url_for('gallery.index') }}">
+        <img src="{{ url_for('static', filename='assets/gallery.png') }}">
+      </a>
     </div>
-    <div class="btnRight">
-      <span class="btnRightLabel"> > </span>
+    <div class="nav_item" id="survey" style="cursor: pointer;">
+      <img src="{{ url_for('static', filename='assets/survey.png') }}">
     </div>
   </div>
 
   <script src="{{ url_for('static', filename='js/NavManager.js') }}"></script>
   <script>
-    manager = new NavManager(
-      document.getElementsByClassName('mainDivBox')[0],
-      3
-    );
+    const manager = new NavManager('mainNavigator', 'mainDivBox');
+    manager.init();
 
-    const leftDiv = document.getElementsByClassName('btnLeft')[0];
-    leftDiv.addEventListener('click', () => manager.left());
-
-    const rightDiv = document.getElementsByClassName('btnRight')[0];
-    rightDiv.addEventListener('click', () => manager.right());
-
-    const surveyImg = document.getElementById('survey');
-    surveyImg.addEventListener('click', () => {
-      window.open('https://forms.gle/vebJpQVWkdKhBTbZ8', target='_blank');
-    });
+    document.getElementById('survey')
+      .addEventListener('click', () =>
+        window.open('https://forms.gle/vebJpQVWkdKhBTbZ8', target='_blank'));
   </script>
 {% endblock %}
