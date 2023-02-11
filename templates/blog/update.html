@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+  <style>
+    .content textarea {
+      min-height: 12em;
+      resize: vertical;
+    }
+  </style>
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}{{ post['title'] }} - 수정{% endblock %}</h1>
+{% endblock %}
+
+{% block button %}
+  <a class="action" onclick="history.go(-1);" style="cursor: pointer; font-size: xx-large">↩️</a>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="title">제목</label>
+    <input name="title" id="title"
+      value="{{ request.form['title'] or post['title'] }}" required>
+    <textarea
+     name="body" id="body"
+     placeholder="멋진 글을 작성해보세요!">{{ request.form['body'] or post['body'] }}</textarea>
+    <input type="submit" value="저장">
+  </form>
+  <hr>
+{% endblock %}

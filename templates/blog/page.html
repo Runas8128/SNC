@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blog_table.css') }}">
+{% endblock %}
+
+{% block header %}
+  <h1 onclick="location.href = {{ url_for('blog.index') }}" style="cursor: pointer;">
+    {% block title %}게시판{% endblock %}
+  </h1>
+{% endblock %}
+
+{% block button %}
+  <a onclick="checkPW('edit');" style="cursor: pointer">📌 수정하기</a>
+  <a onclick="checkPW('delete');" style="cursor: pointer">💥 삭제하기</a>
+{% endblock %}
+
+{% block content %}
+  <article class="post_page">
+    <article>
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+  </article>
+
+  <script src="{{ url_for('static', filename='js/util.js') }}"></script>
+  <script>
+    setPageHeader({{ post|safe }});
+    setPageFooter({{ next|safe }}, {{ prev|safe }}, getSummary);
+  </script>
+
+  <script>
+    function checkPW(action) {
+      const post_id = {{ post['id'] }};
+
+      window.open(
+        `/blog/${post_id}/check_${action}`,
+        "a",
+        "width=400, height=300, left=100, top=50"
+      );
+    }
+  </script>
+{% endblock %}

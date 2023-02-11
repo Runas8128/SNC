@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
+
+/* credit navigator div box */
+
+.mainNavigator {
+  padding-top: 160px;
+  padding-bottom: 160px;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}
+
+.btnLeft, .btnRight {
+  display: inline-block;
+  width: 30%;
+  cursor: pointer;
+  transform: translate(0, -25%);
+}
+
+.btnLeftLabel, .btnRightLabel {
+  padding-top: 40%;
+}
+
+.mainNavigator > div {
+  display: inline-block;
+}
+
+.btnLeftLabel {
+  font-size: 100px;
+  float: right;
+}
+
+.btnRightLabel {
+  font-size: 100px;
+  float: left;
+}
+
+.wrapper {
+  display: inline-block;
+  overflow: hidden;
+  width: 40%;
+}
+
+.mainDivBox {
+  width: 200%;
+  transition: transform 0.5s;
+  text-align: center;
+}
+
+.nav_item {
+  width: 370px;
+  float: left;
+}
+
+.nav_item img {
+  width: 15%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+.nav_item span {
+  display: inline-block;
+  font-family: "Black Han Sans", sans-serif;
+  font-size: 25px;
+  width: 50%;
+  transform: translate(0, -60%);
+}

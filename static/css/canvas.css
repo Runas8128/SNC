@@ -1,0 +1,78 @@
+.container {
+  max-width: 960px;
+  align-self: center;
+  margin: auto;
+}
+
+#canvas {
+  float: left;
+  margin: auto;
+}
+
+#noti1 {
+  grid-area: noti1;
+  font-size: small;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#noti2 {
+  grid-area: noti2;
+  font-size: small;
+}
+
+#green {
+  grid-area: green;
+  background: green;
+}
+
+#blue {
+  grid-area: blue;
+  background: blue;
+}
+
+#red {
+  grid-area: red;
+  background: red;
+}
+
+#yellow {
+  grid-area: yellow;
+  background: yellow;
+}
+
+#orange {
+  grid-area: orange;
+  background: orange;
+}
+
+#black {
+  grid-area: black;
+  background: black;
+}
+
+#white {
+  grid-area: white;
+  background: white;
+}
+
+.palette {
+  display: inline-grid;
+  margin: auto;
+  grid-template-areas:
+    'noti1 green blue red'
+    'noti1 yellow orange black'
+    'noti2 white white white';
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+  width: 20vw;
+}
+
+.palette > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  margin: 5px 5px;
+  font-size: small;
+}

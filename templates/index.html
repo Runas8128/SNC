@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}SNC v0.1 beta{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="mainNavigator"></div>
+
+  <div class="mainDivBox">
+    <div class="nav_item">
+      <a href="{{ url_for('blog.index') }}">
+        <img src="{{ url_for('static', filename='assets/blog.png') }}">
+      </a>
+    </div>
+    <div class="nav_item">
+      <a href="{{ url_for('gallery.index') }}">
+        <img src="{{ url_for('static', filename='assets/gallery.png') }}">
+      </a>
+    </div>
+    <div class="nav_item" id="survey" style="cursor: pointer;">
+      <img src="{{ url_for('static', filename='assets/survey.png') }}">
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/NavManager.js') }}"></script>
+  <script>
+    const manager = new NavManager('mainNavigator', 'mainDivBox');
+    manager.init();
+
+    document.getElementById('survey')
+      .addEventListener('click', () =>
+        window.open('https://forms.gle/vebJpQVWkdKhBTbZ8', target='_blank'));
+  </script>
+
+  <script src="{{ url_for('static', filename='js/enterCredit.js') }}"></script>
+{% endblock %}
