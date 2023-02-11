@@ -1,3 +1,4 @@
+import datetime
 import sqlite3
 
 import click
@@ -23,8 +24,15 @@ def get_db():
             detect_types=sqlite3.PARSE_DECLTYPES
         )
 
-        # This enables to access columns by dict-style
-        g.db.row_factory = sqlite3.Row
+        def dict_factory(cursor, row):
+            d = {}
+            for idx, col in enumerate(cursor.description):
+                if isinstance(row[idx], datetime.datetime):
+                    d[col[0]] = row[idx].strftime('%Y-%m-%d')
+                else:
+                    d[col[0]] = row[idx]
+            return d
+        g.db.row_factory = dict_factory
 
     return g.db
 

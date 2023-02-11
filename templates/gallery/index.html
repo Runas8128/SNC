@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blog_table.css') }}">
+  <style> td.image { width: 75px; } </style>
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}Gallery{% endblock %}</h1>
+{% endblock %}
+
+{% block button %}
+  <a class="action" href="{{ url_for('gallery.create') }}">🎨 그리기</a>
+{% endblock %}
+
+{% block content %}
+  <table class="board_list">
+    <tr class="top">
+      <th class="num">번호</th>
+      <th class="title">제목</th>
+      <th class="image">미리보기</th>
+      <th class="writer">글쓴이</th>
+      <th class="date">작성일</th>
+      <th class="count">조회수</th>
+    </tr>
+  </table>
+
+  <script src="{{ url_for('static', filename='js/util.js') }}"></script>
+  <script>
+    const posts = {{ posts|safe }};
+    const listElem = document.getElementsByClassName('board_list')[0];
+
+    posts.forEach(post => listElem.append(getThumbnail(post)));
+
+    window.onpageshow = event => {
+      if (
+        event.persisted ||
+        (performance.navigation.type === 2)) {
+        location.reload();
+      }
+    }
+  </script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/canvas.css') }}">
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}그림 그리기{% endblock %}</h1>
+{% endblock %}
+
+{% block button %}
+  <a class="action" onclick="history.go(-1);" style="cursor: pointer;">↩️ 뒤로가기</a>
+{% endblock %}
+
+{% block content %}
+  <form>
+    <label for="title">제목</label>
+    <input name="title" id="title" value="{{ request.form['title'] }}" required>
+    <label for="user_id">ID</label>
+    <input name="user_id" id="user_id" value="{{ request.form['user_id'] }}" required>
+    <label for="user_pw">비밀번호</label>
+    <input type="password" name="user_pw" id="user_pw" value="{{ request.form['user_pw'] }}" required>
+
+    <label for="canvasDiv" style="color: #777; font-size: small">멋진 그림을 그려보세요!</label>
+    <div id="canvasDiv" class="container">
+      <canvas id="canvas" width="400" height="400" style="border: 2px solid"></canvas>
+      <div class="palette">
+        <div id="noti1">펜 고르기</div>
+        <div id="green"   onclick="canvas.setPen(this)"></div>
+        <div id="blue"    onclick="canvas.setPen(this)"></div>
+        <div id="red"     onclick="canvas.setPen(this)"></div>
+        <div id="yellow"  onclick="canvas.setPen(this)"></div>
+        <div id="orange"  onclick="canvas.setPen(this)"></div>
+        <div id="black"   onclick="canvas.setPen(this)"></div>
+        <div id="noti2">지우개 >>></div>
+        <div id="white"   onclick="canvas.setPen(this)"></div>
+      </div>
+    </div>
+
+  </form>
+  <div>
+    <input type="button" value="저장" id="submit">
+    <input type="button" value="초기화" id="clr" size="23" onclick="canvas.erase()">
+  </div>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/canvasHandler.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    document.querySelector('body')
+      .onload = () => canvas.init();
+
+    document.getElementById('submit')
+      .addEventListener('click', () => $.ajax({
+        type: "POST",
+        url: "/gallery/create",
+        data: JSON.stringify({
+          title: document.getElementById('title').value,
+          image: document.getElementById('canvas').toDataURL(),
+          user_id: document.getElementById('user_id').value,
+          user_pw: document.getElementById('user_pw').value,
+        }),
+        contentType: 'application/json',
+        dataType: 'json',
+        processData: false,
+        success: data => {
+          console.log(data);
+          if (['제목', 'ID', '비밀번호'].includes(data)) {
+            alert(`${data}을/를 채워주세요!`);
+          }
+          else {
+            location.href = `/gallery/${data}/page`;
+          }
+        },
+        error: data => {
+          alert('파일 업로드중 문제가 발생했습니다.');
+        }
+      }));
+  </script>
+{% endblock %}

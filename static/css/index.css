@@ -1,0 +1,87 @@
+/* main navigator div box */
+
+.mainNavigator {
+  padding-top: 120px;
+  padding-bottom: 120px;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}
+
+.btnLeft, .btnRight {
+  display: inline-block;
+  width: 30%;
+  cursor: pointer;
+}
+
+.btnLeftLabel, .btnRightLabel {
+  padding-top: 40%;
+}
+
+.mainNavigator > div {
+  display: inline-block;
+}
+
+.btnLeftLabel {
+  font-size: 100px;
+  float: right;
+}
+
+.btnRightLabel {
+  font-size: 100px;
+  float: left;
+}
+
+.wrapper {
+  display: inline-block;
+  overflow: hidden;
+  width: 40%;
+}
+
+.mainDivBox {
+  width: 300%;
+  transition: transform 0.5s;
+}
+
+.nav_item {
+  width: 370px;
+  float: left;
+}
+
+.nav_item img {
+  width: 100%;
+}
+
+
+/* credit div box */
+
+.creditBox {
+  display: inline-grid;
+  grid-template-areas:
+    't0 t0 t0'
+    't1 t2 t3'
+    't4 t5 t6'
+    't7 t7 t7';
+  grid-template-columns: 33% 33% 33%;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 2%;
+  align-content: center;
+}
+
+.creditBox > p {
+  text-align: center;
+  padding: 20px 0;
+  margin: auto;
+  font-size: medium;
+}
+
+#t0 { grid-area: t0; }
+#t1 { grid-area: t1; }
+#t2 { grid-area: t2; }
+#t3 { grid-area: t3; }
+#t4 { grid-area: t4; }
+#t5 { grid-area: t5; }
+#t6 { grid-area: t6; }
+#t7 { grid-area: t7; }

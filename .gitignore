@@ -1,3 +1,17 @@
+# VENV Files
 venv
-__pycache__
+.venv
+
+.idea
 instance
+*.pdf
+*test*
+
+__pycache__
+
+.ebignore
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

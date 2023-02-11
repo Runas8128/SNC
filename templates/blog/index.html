@@ -1,24 +1,64 @@
 {% extends 'base.html' %}
 
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blog_table.css') }}">
+{% endblock %}
+
 {% block header %}
-  <h1>{% block title %}Posts{% endblock %}</h1>
-  <a class="action" href="{{ url_for('blog.create') }}">New</a>
+  <h1>{% block title %}게시판{% endblock %}</h1>
+{% endblock %}
+
+{% block button %}
+  <a class="action" href="{{ url_for('blog.create') }}">📝글쓰기</a>
 {% endblock %}
 
 {% block content %}
-  {% for post in posts %}
-    <article class="post">
-      <header>
-        <div>
-          <h1>{{ post['title'] }}</h1>
-          <div class="about">by {{ post['author'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-        </div>
-        <a class="action" href="{{ url_for('blog.update', id_=post['id']) }}">Edit</a>
-      </header>
-      <p class="body">{{ post['content'] }}</p>
-    </article>
-    {% if not loop.last %}
+  <div class="board_wrap">
+    <div class="board_list_wrap">
+      <table class="board_list">
+        <tr class="top">
+          <th class="num">번호</th>
+          <th class="title">제목</th>
+          <th class="writer">글쓴이</th>
+          <th class="date">작성일</th>
+          <th class="count">조회수</th>
+        </tr>
+      </table>
+
       <hr>
-    {% endif %}
-  {% endfor %}
+
+      <div class="board_page">
+        <a href="{{ url_for('blog.index', page_id=0) }}" class="bt first"><<</a>
+        <a href="{{ url_for('blog.index', page_id=[page_id - 1, 0]|max) }}" class="bt prev"><</a>
+
+        {% for _id in range(page_count) %}
+          <a href="{{ url_for('blog.index', page_id=_id) }}" class="num">{{ _id + 1 }}</a>
+        {% endfor %}
+
+        {% if page_count == 0 %}
+          <a href="{{ url_for('blog.index', page_id=0) }}" class="num">1</a>
+        {% endif %}
+
+        <a href="{{ url_for('blog.index', page_id=[page_count - 1, page_id + 1]|min) }}" class="bt next">></a>
+        <a href="{{ url_for('blog.index', page_id=page_count - 1) }}" class="bt last">>></a>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/util.js') }}"></script>
+  <script>
+    const posts = {{ posts|safe }};
+    const listElem = document.getElementsByClassName('board_list')[0];
+
+    posts.forEach(post => listElem.append(getSummary(post)));
+
+    window.onpageshow = event => {
+      if (
+        event.persisted ||
+        (performance.navigation.type === 2)) {
+        location.reload();
+      }
+    }
+  </script>
 {% endblock %}
+

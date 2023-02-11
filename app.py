@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
+
 
 
 def create_app(test_config=None):
@@ -24,16 +25,23 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    @app.route('/')
+    def root():
+        return render_template('index.html')
+
+    @app.route('/credit')
+    def credit():
+        return render_template('credit.html')
+
+    app.add_url_rule('/', endpoint='index')
 
     from script import db
     db.init_app(app)
 
-    from blueprint import blog
+    from script import blog
     app.register_blueprint(blog.bp)
-    app.add_url_rule('/', endpoint='index')
+
+    from script import gallery
+    app.register_blueprint(gallery.bp)
 
     return app

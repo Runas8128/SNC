@@ -1,0 +1,114 @@
+/* generic tags */
+
+html {
+  font-family: sans-serif;
+  background: #eee;
+  padding: 1rem;
+}
+
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  background: white;
+}
+
+h1 {
+  font-family: "PyeongChangPeace-Bold";
+  color: #000000;
+  margin: 1rem;
+}
+
+@font-face {
+  font-family: 'PyeongChangPeace-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tenada';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid lightgray;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header .action {
+  display: block;
+  padding: 0.5rem;
+}
+
+/* content stuffs */
+
+.content:last-child {
+  margin-bottom: 0;
+}
+
+.content input {
+  margin-bottom: 1em;
+}
+
+.content {
+  padding: 0 1rem 1rem;
+}
+
+.content > header {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  align-items: flex-end;
+  height: 60px;
+  padding-bottom: 10px;
+}
+
+.content > header h1 {
+  flex: auto;
+  margin: 1rem 0 0.25rem 0;
+}
+
+header > div#home {
+  width: 20%;
+}
+header > div#home > span {
+  font-size: xx-large;
+}
+
+header > div#header {
+  width: 60%;
+}
+header > div#header > h1 {
+  text-align: center;
+}
+
+header > div#button {
+  width: 20%;
+}
+header > div#button > * {
+  display: block;
+  width: fit-content;
+  margin: 1% 1% 2.5% auto;
+  border: 1px solid rgb(20, 20, 20);
+  background-color: #fafdff;
+  font-family: "Tenada";
+}
+
+/* flash div style */
+
+.flash {
+  margin: 1em 0;
+  padding: 1em;
+  background: #cae6f6;
+  border: 1px solid #377ba8;
+}
+
+tr {
+  border-bottom: 1px solid black;
+}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/credit.css') }}">
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}C R E D I T{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="mainNavigator"></div>
+
+  <h3>Produced by Team.SNC</h3>
+  <div class="mainDivBox"></div>
+
+  <script src="{{ url_for('static', filename='js/util.js') }}"></script>
+  <script>
+    const mainBox = document.getElementsByClassName('mainDivBox')[0];
+
+    const div1 = document.createElement('div');
+    div1.appendChild(makeLink('20510 권여준', { instagram: 'kwx_n' }));
+    div1.appendChild(makeLink('20609 김민우', { instagram: 'me_in_w' }));
+    div1.appendChild(makeLink('20516 이승윤', { github: 'raeB1121' }));
+    mainBox.appendChild(div1);
+
+    const div2 = document.createElement('div');
+    div2.appendChild(makeLink('20910 김민서', { instagram: 'murinseo_05' }));
+    div2.appendChild(makeLink('20519 장현우', { instagram: 'hyunuu__05' }));
+    div2.appendChild(makeLink('10921 조민성', { github: 'Runas8128' }));
+    mainBox.appendChild(div2);
+  </script>
+
+  <script src="{{ url_for('static', filename='js/NavManager.js') }}"></script>
+  <script>
+    const manager = new NavManager('mainNavigator', 'mainDivBox');
+    manager.init();
+  </script>
+{% endblock %}

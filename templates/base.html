@@ -1,16 +1,22 @@
 <!doctype html>
 
-<title>{% block title %}{% endblock %} - Flaskr</title>
+<title>{% block title %}{% endblock %} - SNC project</title>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-<nav>
-  <h1>Flaskr</h1>
-</nav>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='assets/logo.png') }}">
+{% block css %}{% endblock %}
 
 <section class="content">
   <header>
-    {% block header %}{% endblock %}
+    <div id="home">
+      <span style="cursor: pointer; width: fit-content" onclick="location.href='/'">🏠</span>
+    </div>
+    <div id="header">
+      {% block header %}{% endblock %}
+    </div>
+    <div id="button">
+      {% block button %}{% endblock %}
+    </div>
   </header>
 
   {% for message in get_flashed_messages() %}

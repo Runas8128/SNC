@@ -1,0 +1,4 @@
+.content textarea {
+  min-height: 12em;
+  resize: vertical;
+}

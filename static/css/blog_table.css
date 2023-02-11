@@ -1,0 +1,41 @@
+table {
+  width: 100%;
+}
+
+th {
+  font-size: medium;
+  background-color: #eee;
+}
+
+td {
+  text-align: center;
+  height: 50px;
+  font-size: medium;
+}
+
+.about { color: #777; }
+
+table { width: 100%; }
+td { text-align: center; }
+
+td.num { width: 7.5%; }
+td.writer { width: 20%; }
+td.date { width: 15%; }
+td.count { width: 7.5%; }
+
+.board_page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.board_wrap {
+  padding-top: 2%;
+}
+
+.board_wrap > .board_list_wrap > .board_list {
+  padding-bottom: 5%;
+
+}
